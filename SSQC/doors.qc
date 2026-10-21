@@ -212,6 +212,12 @@ Prints messages and opens key doors
 */
 void() door_touch =
 {
+	if (sm_entitymanager)
+	{
+		doorSM_touch ();
+		return;
+	}
+
 	if (other.classname != "player")
 		return;
 	if (self.owner.attack_finished > time)
@@ -434,9 +440,7 @@ Key doors are allways wait -1.
 */
 
 void() func_door =
-
 {
-
 	if (world.worldtype == 0)
 	{
 		precache_sound("doors/medtry.wav");

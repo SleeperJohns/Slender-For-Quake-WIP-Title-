@@ -24,6 +24,14 @@ void(entity attacker, float damage) SUB_null_pain = {};
 
 void() SUB_Remove = { remove(self); };
 
+void(entity ent, void() call) SUB_CallAsSelf =
+{
+	local entity oldself = self;
+	
+	self = ent;
+	call ();
+	self = oldself;
+};
 
 /*
 QuakeEd only writes a single float for angles(bad idea), so up and down are
