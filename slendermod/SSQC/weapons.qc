@@ -1266,6 +1266,8 @@ Called every frame so impulse events can be handled as well as possible
 */
 void() W_WeaponFrame =
 {
+	if (!self.weapon) return; // Sleeper: If we do not have a valid weapon, we can't attack. 
+
 	if (time < self.attack_finished)
 		return;
 

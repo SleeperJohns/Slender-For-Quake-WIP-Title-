@@ -45,6 +45,8 @@ float sm_spawned_items;
 .string key_target;
 .string key_targetname;
 .float sm_door_touched;
+.string ent_mdl; // Sleeper: Used to allow mappers to set a custom model on an entity.
+.string ent_snd; // Sleeper: Used to allow mappers to set a custom sound on an entity.
 
 float SM_SMS_TRACKCOUNT = 6;
 float SM_EIGHTPAGES_TRACKCOUNT = 4;
@@ -94,11 +96,19 @@ void() PrecacheSlenderItems =
     // Pages
     // Mementos
     // Keys
+    precache_sound ("misc/medkey.wav");
+    precache_sound ("misc/runekey.wav");
+    precache_sound ("misc/basekey.wav");
+        
+    precache_model ("progs/w_s_key.mdl");
+    precache_model ("progs/m_s_key.mdl");
+    precache_model ("progs/b_s_key.mdl");
+    precache_model ("progs/s_bubble.spr");
 };
 
 void() PrecacheSlenderMonsters =
 {
-    precache_model ("slender/slenderman.mdl");
+//  precache_model ("slender/slenderman.mdl"); // Sleeper: Not yet.
 };
 
 void() PrecacheSlenderWorld =

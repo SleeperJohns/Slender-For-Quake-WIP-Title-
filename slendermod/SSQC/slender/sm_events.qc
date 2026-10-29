@@ -43,7 +43,7 @@ float() SM_Event_Count_Pages =
     local entity pages;
     local float  page_count = 0;
 
-    for (pages = find(world, classname, "item_page"); pages; collectibles = find(pages, classname, "item_page")) page_count += 1; // Sleeper: Count for pages.
+    for (pages = find(world, classname, "item_page"); pages; pages = find(pages, classname, "item_page")) page_count += 1; // Sleeper: Count for pages.
     return page_count;
 };
 
@@ -52,7 +52,7 @@ float() SM_Event_Count_Mementos =
     local entity mementos;
     local float  memento_count = 0;
 
-    for (mementos = find(world, classname, "item_page"); mementos; collectibles = find(mementos, classname, "item_page")) memento_count += 1; // Sleeper: Count for pages.
+    for (mementos = find(world, classname, "item_page"); mementos; mementos = find(mementos, classname, "item_page")) memento_count += 1; // Sleeper: Count for pages.
     return memento_count;
 };
 
@@ -92,12 +92,21 @@ void(string item) SM_Event_Despawn_Item =
     }
 };
 
-void(string info, string item, void() func) SM_Event_Spawn_Item =
+void(string info, string item, string mdl, string snd, void() func) SM_Event_Spawn_Item =
 {
     local entity spot;
 
     // Sleeper: Spawn items.
-    for (spot = find(world, classname, info); spot; spot = find(spot, classname, info)) func_SpawnItem (spot.origin, spot.angles, spot.sm_itemspot_id, item, func);
+    for (spot = find(world, classname, info); spot; spot = find(spot, classname, info)) func_SpawnItem 
+    (
+        spot.origin, 
+        spot.angles, 
+        spot.sm_itemspot_id, 
+        (!spot.ent_mdl) ? mdl : spot.ent_mdl, // Sleeper: Allow mappers to set a custom model.
+        (!spot.ent_snd) ? snd : spot.ent_snd, // Sleeper: Allow mappers to set a custom sound.
+        item, 
+        func
+    );
     
     // Sleeper: Despawn everything.
     SM_Event_Despawn_Item (item);
@@ -106,7 +115,14 @@ void(string info, string item, void() func) SM_Event_Spawn_Item =
 void() SM_Event_Spawn_Pages =
 {
     // Sleeper: Spawn pages.
-    SM_Event_Spawn_Item ("info_page_spot", "item_page", item_page);
+    SM_Event_Spawn_Item 
+    (
+        "info_page_spot", 
+        "item_page", 
+        "progs/s_bubble.spr", // Sleeper: Temporary.
+        "", // Sleeper: Temporary.
+        item_page
+    );
     
     // Sleeper: Despawn everything.
     SM_Event_Despawn_Item ("item_page");
@@ -115,7 +131,14 @@ void() SM_Event_Spawn_Pages =
 void() SM_Event_Spawn_Mementos =
 {
     // Sleeper: Spawn mementos.
-    SM_Event_Spawn_Item ("info_memento_spot", "item_memento", item_memento);
+    SM_Event_Spawn_Item 
+    (
+        "info_memento_spot", 
+        "item_memento", 
+        "progs/s_bubble.spr", // Sleeper: Temporary.
+        "", // Sleeper: Temporary.
+        item_memento
+    );
     
     // Sleeper: Despawn everything.
     SM_Event_Despawn_Item ("item_memento");
@@ -124,7 +147,14 @@ void() SM_Event_Spawn_Mementos =
 void() SM_Event_Spawn_Keys =
 {
     // Sleeper: Spawn keys.
-    SM_Event_Spawn_Item ("info_key_spot", "item_keySM", item_keySM);
+    SM_Event_Spawn_Item 
+    (
+        "info_key_spot", 
+        "item_keySM", 
+        (world.worldtype == 0) ? "progs/w_s_key.mdl" : (world.worldtype == 1) ? "progs/m_s_key.mdl" : (world.worldtype == 2) ? "progs/b_s_key.mdl" : "", // Sleeper: Temporary.
+        (world.worldtype == 0) ? "misc/medkey.wav" : (world.worldtype == 1) ? "misc/runekey.wav" : (world.worldtype == 2) ? "misc/basekey.wav" : "", // Sleeper: Temporary.
+        item_keySM
+    );
     
     // Sleeper: Despawn everything.
     SM_Event_Despawn_Item ("item_keySM");
@@ -132,7 +162,7 @@ void() SM_Event_Spawn_Keys =
 
 void() SM_Event_Spawn_All = {SM_Event_Spawn_Pages();SM_Event_Spawn_Mementos();SM_Event_Spawn_Keys();};
 
-void(string info, string item) SM_Event_Randomize_Item = // Sleeper: This is our respawn function that randomizes item locations.
+void(string info, string item) SM_Event_Randomize_Item = // Sleeper: This is our item respawner/randomizer that randomizes the locations of items.
 {
     local entity spot, search, check;
     local float  id, count, index, roll, done, total, remaining, needed;
@@ -283,7 +313,7 @@ void() SM_Event_Reset =
     sm_inactivity_clock += 0.1;
 };
 
-void(entity pl) SM_Event_Player_Loop_Keys = // Sleeper: Mechanically useless, but gives somewhat an indicator of how many keys we have.
+void(entity pl) SM_Event_Player_Keys = // Sleeper: Mechanically useless, but gives somewhat an indicator of how many keys we have.
 {
     if (sm_keys > 0)
     {
@@ -303,12 +333,42 @@ void(entity pl) SM_Event_Player_Loop_Keys = // Sleeper: Mechanically useless, bu
     pl.items &= ~IT_KEY2; // Sleeper: Remove Gold Key.
 };
 
+void(entity pl)  SM_Event_Player_CleanInv =
+{
+    local float keys;
+
+    if (pl.ltime > 0) return;
+
+    bprint ("Why are we still here?\n");
+
+    keys = pl.items & (IT_KEY1 | IT_KEY2); // Sleeper: Isolate key bits.
+
+    pl.items = 0; // Sleeper: Wipe inventory completely.
+    pl.items |= keys; // Sleeper: If keys exist, add them.
+
+    // Sleeper: Remove ammo.
+    pl.ammo_shells = pl.ammo_nails = pl.ammo_rockets = pl.ammo_cells = pl.currentammo = 0;
+
+    // Sleeper: Remove current weapon.
+    pl.weapon = pl.weaponframe = 0;
+    pl.weaponmodel = "";
+    SUB_CallAsSelf (pl, W_SetCurrentAmmo);
+
+    pl.ltime += 0.1;
+};
+
+void(entity pl) SM_Event_Player_Inventory =
+{
+    SM_Event_Player_Keys (pl);
+    SM_Event_Player_CleanInv (pl);
+};
+
 void() SM_Event_Player_Loop =
 {
     local entity pl = find(world, classname, "player");
     while (pl != world)
     {
-        SM_Event_Player_Loop_Keys (pl);  
+        SM_Event_Player_Inventory (pl);  
         pl = find(pl, classname, "player");
     }
 };
@@ -394,6 +454,7 @@ void() event_manager =
     sm_inactivity_clock = sm_world_clock = sm_event_clock = sm_activeplayer_timecount = sm_collectibles = sm_keys = sm_keys_failed = sm_slenderman_aggression = 0; // Sleeper: We haven't spawned Slender Man yet.
 
     // Sleeper: Mainly for mapping if mappers want to set their difficulty curves. Default is based off of Eight Pages.
+    // Sleeper: I will change these field names to more user friendly, so it all make sense (actually this should have been done since the beginning).
     if (!self.wait) self.wait = (SM_Event_Count_Collectibles() < 8) ? SM_Event_Count_Collectibles() : 8; // Sleeper: Minimum collectible target (used for Easy and Normal skill).
     if (!self.dmg) self.dmg = 10; // Sleeper: Maximum collectible target (use for Hard skill and higher).
     if (!self.distance) self.distance = 0; // Sleeper: Minimum keys.

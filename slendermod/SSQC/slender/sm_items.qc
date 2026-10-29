@@ -1,3 +1,5 @@
+// Sleeper: These items should never be precached directly by the items themselves, as they're spawned, despawned and respawned at random locations set by their info spots, using the event manager.
+
 void() sm_collectible_touch =
 {
     local entity pl;
@@ -15,11 +17,11 @@ void() sm_collectible_touch =
     while (pl != world)
     {
         centerprint (pl, sprintf("%s%s\n", ptxt, (sm_collectibles == sm_max_collectibles) ? "\nFind the exit and escape!" : ""));
-        pl = find(pl, classname, "player"); // Move to the next player
+        pl = find(pl, classname, "player"); // Sleeper: Move to the next player
     }
 
     sprint (other, sprintf("You got a %s\n", stxt));
-//  sound (other, CHAN_ITEM, "slender/page.wav", 1, ATTN_NORM);
+    sound (other, CHAN_ITEM, self.noise, 1, ATTN_NORM);
     stuffcmd (other, "bf\n");
 
     self.model = string_null;
@@ -29,8 +31,6 @@ void() sm_collectible_touch =
 
 void() item_page =
 {
-    if (!self.model) self.mdl = self.model = "progs/s_bubble.spr";
-    precache_model (self.model);
     setmodel (self, self.model);
 
     // Sleeper: Needs to be filled out.
@@ -40,8 +40,6 @@ void() item_page =
 
 void() item_memento =
 {
-    if (!self.model) self.mdl = self.model = "progs/s_bubble.spr";
-    precache_model (self.model);
     setmodel (self, self.model);
 
     // Sleeper: Needs to be filled out.
@@ -93,10 +91,8 @@ void() item_keySM =
         if (!self.model) self.mdl = self.model = "progs/b_s_key.mdl";
     }
 
-    precache_sound (self.noise);
-    precache_model (self.model);
-
     setmodel (self, self.model);
+
     if (!self.netname) self.netname = "standard";
     self.touch = sm_key_touch;
 };
