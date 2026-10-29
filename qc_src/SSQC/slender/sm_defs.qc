@@ -31,7 +31,8 @@ float sm_slenderman_aggression; // Sleeper: How angry is Slender Man?
 float sm_activeplayer_timecount; // Sleeper: (In minutes) how long has players been active?
 float sm_slenderman_count; // Sleeper: How many Slender Men are there?
 float sm_event_clock; // Sleeper: The scary clock.
-float sm_world_clock; // Sleeper: Just a tracker for real time.
+float sm_world_clock; // Sleeper: Just a tracker for real time. (Probably don't need this, we can just to "time".)
+float sm_inactivity_clock; // Sleeper: This is incremented when the server is inactive.
 float sm_current_track; // Sleeper: Tracks what page music we want to use.
 float num_players;
 float num_alive_players;

@@ -1,6 +1,6 @@
 float() SM_Slenderman_Aggression_Scalar =
 {
-    local float aggr_multi = self.armortype; // Sleeper: Slendy's aggression multiplier.
+    local float aggr_multi = (!cvar("scratch1")) ? ((skill >= 3) ? 1.5 : (skill == 2) ? 1.25 : (skill == 0) ? 0.5 : 1.0) : clamp(cvar("scratch1"), 0.5, 2); // Sleeper: Slendy's aggression multiplier.
     local float collect_items = (self.count * sm_collectibles); // Sleeper: Make Slender Man angrier with each package pickup.
     local float collect_keys = (self.cnt * sm_keys); // Sleeper: Make Slender Man angrier with each key pickup.
     local float keys_failure = (self.frags * sm_keys_failed); // Sleeper: Make Slender Man angrier when a player tries to open the wrong door with the wrong key.
@@ -15,11 +15,12 @@ float() SM_Check_AlivePlayers = // Sleeper: Count living players.
     local entity pl;
     local float  count = 0;
 
-    for (pl = find(world, classname, "player"); pl != world; pl = find(world, classname, "player")) 
+    for (pl = find(world, classname, "player"); pl != world; pl = find(pl, classname, "player")) 
     {
     	if (pl.health <= 0) continue;
     	count += 1;
 	}
+
     return count;
 };
 
@@ -28,7 +29,7 @@ float() SM_Check_ActivePlayers = // Sleeper: Count all active players.
     local entity pl;
     local float  count = 0;
 
-    for (pl = find(world, classname, "player"); pl != world; pl = find(world, classname, "player")) count += 1;
+    for (pl = find(world, classname, "player"); pl != world; pl = find(pl, classname, "player")) count += 1;
     return count;
 };
 
@@ -37,16 +38,25 @@ void() remove_all_slender_monsters = // Sleeper: Removes all Slender monsters fr
     remove_slenderman (); // Sleeper: Bye, bye Slender Man.
 };
 
-float() SM_Event_Count_Collectibles =
+float() SM_Event_Count_Pages =
 {
-    local entity collectibles;
-    local float  collectible_count = 0;
+    local entity pages;
+    local float  page_count = 0;
 
-    for (collectibles = find(world, classname, "item_page"); collectibles; collectibles = find(collectibles, classname, "item_page")) collectible_count += 1; // Sleeper: Count for pages.
-    for (collectibles = find(world, classname, "item_memento"); collectibles; collectibles = find(collectibles, classname, "item_memento")) collectible_count += 1; // Sleeper: Count for mementos.
-    
-    return collectible_count;
+    for (pages = find(world, classname, "item_page"); pages; collectibles = find(pages, classname, "item_page")) page_count += 1; // Sleeper: Count for pages.
+    return page_count;
 };
+
+float() SM_Event_Count_Mementos =
+{
+    local entity mementos;
+    local float  memento_count = 0;
+
+    for (mementos = find(world, classname, "item_page"); mementos; collectibles = find(mementos, classname, "item_page")) memento_count += 1; // Sleeper: Count for pages.
+    return memento_count;
+};
+
+float() SM_Event_Count_Collectibles = {return SM_Event_Count_Pages() + SM_Event_Count_Mementos();};
 
 float() SM_Event_Count_Keys =
 {
@@ -85,14 +95,9 @@ void(string item) SM_Event_Despawn_Item =
 void(string info, string item, void() func) SM_Event_Spawn_Item =
 {
     local entity spot;
-    local float  i = 1;
 
     // Sleeper: Spawn items.
-    for (spot = find(world, classname, info); spot; spot = find(spot, classname, info)) 
-    {
-        if (spot.sm_itemspot_id == i) func_SpawnItem (spot.origin, spot.angles, spot.sm_itemspot_id, item, func);
-        i++;
-    }
+    for (spot = find(world, classname, info); spot; spot = find(spot, classname, info)) func_SpawnItem (spot.origin, spot.angles, spot.sm_itemspot_id, item, func);
     
     // Sleeper: Despawn everything.
     SM_Event_Despawn_Item (item);
@@ -125,6 +130,8 @@ void() SM_Event_Spawn_Keys =
     SM_Event_Despawn_Item ("item_keySM");
 };
 
+void() SM_Event_Spawn_All = {SM_Event_Spawn_Pages();SM_Event_Spawn_Mementos();SM_Event_Spawn_Keys();};
+
 void(string info, string item) SM_Event_Randomize_Item = // Sleeper: This is our respawn function that randomizes item locations.
 {
     local entity spot, search, check;
@@ -134,6 +141,7 @@ void(string info, string item) SM_Event_Randomize_Item = // Sleeper: This is our
 
     id = 0;
     needed = (item == "item_keySM") ? sm_max_keys : sm_max_collectibles; // Sleeper: Sets how many needs things are needed.
+    dprint (sprintf("%s needed: %g\n", item, needed));
 
     // Sleeper: Total up the ID groups.
     for (spot = find(world, classname, info); spot; spot = find(spot, classname, info))
@@ -153,6 +161,7 @@ void(string info, string item) SM_Event_Randomize_Item = // Sleeper: This is our
     }
 
     remaining = total;
+    dprint (sprintf("%s spots found: %g\n", item, remaining));
 
     // Sleeper: Loop through all collectibles to select which ones to appear.
     for (spot = find(world, classname, item); spot; spot = find(spot, classname, item))
@@ -197,11 +206,9 @@ void(string info, string item) SM_Event_Randomize_Item = // Sleeper: This is our
                             roll += 1;
                         }
                     }
-
                     needed -= 1;
                 }
             }
-
             remaining -= 1;
         }
     }
@@ -210,6 +217,7 @@ void(string info, string item) SM_Event_Randomize_Item = // Sleeper: This is our
 void() SM_Event_Reset_Pages = {sm_collectibles = 0; SM_Event_Randomize_Item("info_page_spot", "item_page");};
 void() SM_Event_Reset_Mementos = {sm_collectibles = 0; SM_Event_Randomize_Item("info_memento_spot", "item_memento");};
 void() SM_Event_Reset_Keys = {sm_keys = 0; SM_Event_Reset_All_Doors(); SM_Event_Randomize_Item("info_key_spot", "item_keySM");};
+void() SM_Event_Reset_All = {SM_Event_Reset_Pages();SM_Event_Reset_Mementos();SM_Event_Reset_Keys();};
 
 void() SM_Event_Setup_Pages =
 {
@@ -238,13 +246,13 @@ void() SM_Event_Setup_Keys =
     SM_Event_Reset_Keys ();
 };
 
+void() SM_Event_Setup_All = {SM_Event_Setup_Pages();SM_Event_Setup_Mementos();SM_Event_Setup_Keys();};
+
 void() SM_Event_Setup_Collectibles =
 {
     if (sm_spawned_items == TRUE) return;
 
-    SM_Event_Setup_Pages ();
-    SM_Event_Setup_Mementos ();
-    SM_Event_Setup_Keys ();
+    SM_Event_Setup_All ();
     sm_spawned_items = TRUE;
 };
 
@@ -253,7 +261,6 @@ void() SM_Event_Collectibles =
     SM_Event_SetMax_Collectibles ();
 
     if (intermission_running) return;
-
     SM_Event_Setup_Collectibles ();
 };
 
@@ -261,26 +268,26 @@ void() SM_Event_Reset =
 {
     if (SM_Check_ActivePlayers()) return; // Sleeper: Players active, do nothing.
 
+    sm_current_track = 2; // Sleeper: Null out the music.
+    sm_event_clock = sm_activeplayer_timecount = 0; // Sleeper: Zero out everything.  
+
     if (sm_world_clock >= ((60 * 60) * 3)) // Sleeper: Every 3 hours, restart the server.
     {
         localcmd ("restart\n");
         return;
     }
 
-    if ((sm_world_clock % 60) <= 0) // Sleeper: Every 60 second interval of world time, randomize collectible locations when there are no players active.
-    {
-        SM_Event_Reset_Pages ();
-        SM_Event_Reset_Mementos ();
-        SM_Event_Reset_Keys ();
-    }
+    if ((sm_inactivity_clock % 60) == 0) SM_Event_Reset_All (); // Sleeper: Every 60 second interval of inactivity time, randomize collectible locations when there are no players active.
+
     if (sm_slenderman_count > 0) remove_all_slender_monsters (); // Sleeper: Remove all enemies from the map when there are no players active.
+    sm_inactivity_clock += 0.1;
 };
 
 void(entity pl) SM_Event_Player_Loop_Keys = // Sleeper: Mechanically useless, but gives somewhat an indicator of how many keys we have.
 {
     if (sm_keys > 0)
     {
-        if (sm_keys == 1)
+        if (sm_keys <= 1)
         {
             if (!(pl.items & IT_KEY1)) pl.items |= IT_KEY1; // Sleeper: Give Silver Key.
             pl.items &= ~IT_KEY2; // Sleeper: Remove Gold Key.
@@ -308,6 +315,9 @@ void() SM_Event_Player_Loop =
 
 void() SM_Event_ActivePlayers =
 {
+    local float interval = self.delay;
+    local float penalty = self.ltime;
+
     if (!SM_Check_ActivePlayers()) // Sleeper: If there are no active players, remove all Slender monsters from the map.
     {
         SM_Event_Reset ();
@@ -315,11 +325,12 @@ void() SM_Event_ActivePlayers =
     }
 
     SM_Event_Player_Loop ();
+    sm_inactivity_clock = 0;
 
     if (self.style == SM_AI_WEEPING_ANGEL && sm_collectibles <= 0) return; // Sleeper: Don't do anything yet until a player has picked up a collectible.
 
     sm_event_clock += 0.1; // Sleeper: Increment the event clock by 0.1 seconds. (This is what you use for timed events specific to gameplay.)
-    if ((sm_event_clock % self.delay) <= 0) sm_activeplayer_timecount += self.ltime; // Sleeper: Increment whenever aggressive time threshold gets crossed. This will increase the aggression of Slender Man passively over time.
+    if ((sm_event_clock % interval) <= 0) sm_activeplayer_timecount += penalty; // Sleeper: Increment whenever aggressive time threshold gets crossed. This will increase the aggression of Slender Man passively over time.
 };
 
 void() SM_Event_Slenderman =
@@ -372,13 +383,15 @@ void() event_manager =
         return;
     }
 
+    dprint ("Event Manager: Initialized\n");
+
     PrecacheSlender (); // Sleeper: Precache all Slender materials.
 
     sm_entitymanager = self;
 
     self.targetname = "sm_event_manager";
     self.state = SM_INACTIVE_MONSTERS; // Sleeper: Set the state to inactive monsters.
-    sm_world_clock = sm_event_clock = sm_activeplayer_timecount = sm_collectibles = sm_keys = sm_keys_failed = sm_slenderman_aggression = 0; // Sleeper: We haven't spawned Slender Man yet.
+    sm_inactivity_clock = sm_world_clock = sm_event_clock = sm_activeplayer_timecount = sm_collectibles = sm_keys = sm_keys_failed = sm_slenderman_aggression = 0; // Sleeper: We haven't spawned Slender Man yet.
 
     // Sleeper: Mainly for mapping if mappers want to set their difficulty curves. Default is based off of Eight Pages.
     if (!self.wait) self.wait = (SM_Event_Count_Collectibles() < 8) ? SM_Event_Count_Collectibles() : 8; // Sleeper: Minimum collectible target (used for Easy and Normal skill).
@@ -393,8 +406,7 @@ void() event_manager =
     if (!self.frags) self.frags = 0; // Sleeper: How many points do we want to put towards aggression when players touch the wrong door with the wrong key?
     if (!self.delay) self.delay = (60 * 5); // Sleeper: What will be the time-threshold value? (Doesn't need "time +" to work).
     if (!self.style) self.style = SM_AI_EIGHT_PAGES; // Sleeper: What kind of AI-Style do we want? (Original Eight Pages, Slender Man's Shadow (FPSC), SMS's (FPSC) Prison (Weeping Angel))
-    if (!self.armorvalue) self.armorvalue = (self.style == SM_AI_EIGHT_PAGES) ? clamp(sm_max_collectibles, 8, 10) : 100; // Sleeper: What will be the max aggression value?
-    if (!self.armortype) self.armortype = (skill >= 3) ? 1.5 : (skill == 2) ? 1.25 : (skill == 0) ? 0.5 : 1.0; // Sleeper: This is the aggression multiplier for Slender Man.
+    if (!self.armorvalue) self.armorvalue = (self.style == SM_AI_EIGHT_PAGES) ? ((skill >= 2) ? 10 : 8) : ((skill >= 2) ? 120 : 100); // Sleeper: What will be the max aggression value?
 
     sm_current_track = 2; // Sleeper: No page musicset should play yet.
     self.nextthink = time + 0.1;

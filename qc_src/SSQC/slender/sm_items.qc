@@ -29,6 +29,10 @@ void() sm_collectible_touch =
 
 void() item_page =
 {
+    if (!self.model) self.mdl = self.model = "progs/s_bubble.spr";
+    precache_model (self.model);
+    setmodel (self, self.model);
+
     // Sleeper: Needs to be filled out.
     self.netname = "Page";
     self.touch = sm_collectible_touch;
@@ -36,6 +40,10 @@ void() item_page =
 
 void() item_memento =
 {
+    if (!self.model) self.mdl = self.model = "progs/s_bubble.spr";
+    precache_model (self.model);
+    setmodel (self, self.model);
+
     // Sleeper: Needs to be filled out.
     self.netname = "Memento";
     self.touch = sm_collectible_touch;
@@ -53,7 +61,7 @@ void() sm_key_touch =
     {
         self.next_key = pl.next_key;
         pl.next_key = self;
-        centerprint (pl, sprintf("%s picked up the %s key\n", (pl == other) ? "You" : other.netname, self.netname));
+        if (pl != other) centerprint (pl, sprintf("%s picked up the %s key\n", (pl == other) ? "You" : other.netname, self.netname));
         pl = find(pl, classname, "player"); // Move to the next player
     }
 
@@ -72,17 +80,17 @@ void() item_keySM =
     if (world.worldtype == 0)
     {
         if (!self.noise) self.noise = "misc/medkey.wav";
-        if (!self.model) self.model = "progs/w_s_key.mdl";
+        if (!self.model) self.mdl = self.model = "progs/w_s_key.mdl";
     }
     else if (world.worldtype == 1)
     {
         if (!self.noise) self.noise = "misc/runekey.wav";
-        if (!self.model) self.model = "progs/m_s_key.mdl";
+        if (!self.model) self.mdl = self.model = "progs/m_s_key.mdl";
     }
     else if (world.worldtype == 2)
     {
         if (!self.noise) self.noise = "misc/basekey.wav";
-        if (!self.model) self.model = "progs/b_s_key.mdl";
+        if (!self.model) self.mdl = self.model = "progs/b_s_key.mdl";
     }
 
     precache_sound (self.noise);

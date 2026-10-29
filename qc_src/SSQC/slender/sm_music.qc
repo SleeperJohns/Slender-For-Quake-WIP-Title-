@@ -1,4 +1,5 @@
 float(float tracknum) SM_Page_Track = {return clamp((3 + (((self.sounds - 1) * (self.weapon - ((self.sounds - 1) * 2))) % 100) + tracknum), 3, 255);}; // Sleeper: If Track 2 is a "NULL" track, then we can shift off of 3, depending on the music style we want.
+// Sleeper: Might need to adjust this shift logic, as each map may contain an introduction music.
 
 float(float progress) SM_MusicSet_EightPages = // Sleeper: If there were just 8 collectibles: 1–2, 3–4, 5–6, 7–8.
 {
