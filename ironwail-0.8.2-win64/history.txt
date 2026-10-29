@@ -1,0 +1,2 @@
+game SlenderMod
+map slender_testmap 
