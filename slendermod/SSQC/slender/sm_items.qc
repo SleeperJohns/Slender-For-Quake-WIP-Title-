@@ -17,7 +17,7 @@ void() sm_collectible_touch =
     while (pl != world)
     {
         centerprint (pl, sprintf("%s%s\n", ptxt, (sm_collectibles == sm_max_collectibles) ? "\nFind the exit and escape!" : ""));
-        pl = find(pl, classname, "player"); // Sleeper: Move to the next player
+        pl = find(pl, classname, "player"); // Sleeper: Move to the next player.
     }
 
     sprint (other, sprintf("You got a %s\n", stxt));
@@ -60,7 +60,7 @@ void() sm_key_touch =
         self.next_key = pl.next_key;
         pl.next_key = self;
         if (pl != other) centerprint (pl, sprintf("%s picked up the %s key\n", (pl == other) ? "You" : other.netname, self.netname));
-        pl = find(pl, classname, "player"); // Move to the next player
+        pl = find(pl, classname, "player"); // Sleeper: Move to the next player.
     }
 
     sm_keys += 1; // Tracks total keys globally 

@@ -337,25 +337,25 @@ void(entity pl)  SM_Event_Player_CleanInv =
 {
     local float keys;
 
-    if (pl.ltime > 0) return;
+    if (pl.ltime <= 0)
+    {
+        keys = pl.items & (IT_KEY1 | IT_KEY2); // Sleeper: Isolate key bits.
 
-    bprint ("Why are we still here?\n");
+        pl.items = 0; // Sleeper: Wipe inventory completely.
+        pl.items |= keys; // Sleeper: If keys exist, add them.
 
-    keys = pl.items & (IT_KEY1 | IT_KEY2); // Sleeper: Isolate key bits.
+        // Sleeper: Remove ammo.
+        pl.ammo_shells = pl.ammo_nails = pl.ammo_rockets = pl.ammo_cells = pl.currentammo = 0;
 
-    pl.items = 0; // Sleeper: Wipe inventory completely.
-    pl.items |= keys; // Sleeper: If keys exist, add them.
-
-    // Sleeper: Remove ammo.
-    pl.ammo_shells = pl.ammo_nails = pl.ammo_rockets = pl.ammo_cells = pl.currentammo = 0;
-
-    // Sleeper: Remove current weapon.
-    pl.weapon = pl.weaponframe = 0;
-    pl.weaponmodel = "";
-    SUB_CallAsSelf (pl, W_SetCurrentAmmo);
+        // Sleeper: Remove current weapon.
+        pl.weapon = pl.weaponframe = 0;
+        pl.weaponmodel = "";
+        SUB_CallAsSelf (pl, W_SetCurrentAmmo);
+    }
 
     pl.ltime += 0.1;
 };
+
 
 void(entity pl) SM_Event_Player_Inventory =
 {
