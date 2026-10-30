@@ -1,0 +1,2079 @@
+// Slender entity definition file (.def)
+// Generated from Slender.fgd by fgd2def.pl. Do not edit by hand:
+// edit Slender.fgd and run: perl fgd2def.pl Slender.fgd Slender.def
+
+/*QUAKED worldspawn (0 0.5 0.8) ?
+World entity
+
+-------- KEYS --------
+"message" Text on entering the world.
+"worldtype" Ambience. Default: 0 (Medieval).
+  0 = Medieval
+  1 = Metal (runic)
+  2 = Base
+"sounds" CD track to play. Default: 0.
+"light" Ambient light.
+"_sunlight" Sunlight.
+"_sun_mangle" Sun mangle (Yaw pitch roll).
+*/
+
+/*QUAKED info_player_start (0 1 0) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/player.mdl" });
+}
+Player 1 start
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_player_coop (0 1 0) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/player.mdl" });
+}
+Player cooperative start
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_player_start2 (0 1 0) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/player.mdl" });
+}
+Player episode return point
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_player_deathmatch (0 1 0) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/player.mdl" });
+}
+Deathmatch start
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED testplayerstart (0 1 0) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/player.mdl" });
+}
+Testing player start
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_teleport_destination (0 1 0) (-32 -32 0) (32 32 64) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/player.mdl" });
+}
+Teleporter destination
+
+-------- KEYS --------
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_null (0.78 0.59 0.59) (-8 -8 -8) (8 8 8)
+info_null (spotlight target)
+
+-------- KEYS --------
+"targetname" Name.
+*/
+
+/*QUAKED info_notnull (0.78 0.59 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Wildcard entity
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"use" self.use.
+"think" self.think.
+"nextthink" nextthink.
+"noise" noise.
+"touch" self.touch.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_intermission (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Intermission camera
+
+-------- KEYS --------
+"mangle" Camera angle (Pitch Yaw Roll).
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_slender (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Slender Man's spawn point
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_key_spot (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Key spawn point
+
+-------- KEYS --------
+"sm_itemspot_id" Spot group ID. Default: 0.
+Spots that share an ID form one group. Each group shows at most one item, picked at random. Give every spot a unique ID unless the spots are alternatives for the same item.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_memento_spot (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Memento spawn point
+
+-------- KEYS --------
+"sm_itemspot_id" Spot group ID. Default: 0.
+Spots that share an ID form one group. Each group shows at most one item, picked at random. Give every spot a unique ID unless the spots are alternatives for the same item.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_page_spot (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Page spawn point
+
+-------- KEYS --------
+"sm_itemspot_id" Spot group ID. Default: 0.
+Spots that share an ID form one group. Each group shows at most one item, picked at random. Give every spot a unique ID unless the spots are alternatives for the same item.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED event_manager (0 0.5 0.8) (-8 -8 -8) (8 8 8)
+Event manager
+
+Runs the Slender gameplay loop: page music, collectibles, keys, aggression and Slender Man spawning. Use one per map. Removed in deathmatch. Its targetname is always set to sm_event_manager.
+
+Pages, mementos and keys are created from info_page_spot, info_memento_spot and info_key_spot. Slender Man spawns at a random info_slender: 1 on Easy and Normal, 2 on Hard, 4 on Nightmare, always 1 with the Weeping Angel AI. The Weeping Angel AI waits for the first collectible before it spawns and before aggression starts.
+
+Aggression = (collectibles * count + keys * cnt + failed door attempts * frags) * skill multiplier + passive aggression, clamped to 1..armorvalue. Skill multiplier: 0.5 Easy, 1 Normal, 1.25 Hard, 1.5 Nightmare. A non-zero cvar scratch1 overrides it (clamped to 0.5..2).
+
+While an event_manager exists, touching any func_door runs the Slender key door logic instead of the gold and silver key flags (see func_door key_targetname).
+
+-------- KEYS --------
+"wait" Collectibles needed on Easy and Normal. Default: 0.
+Applies to pages and to mementos. If 0, the code counts the item_page entities present when event_manager spawns, capped at 8. Pages are created later from info_page_spot, so that count is normally 0 and no collectibles appear. Set this key.
+"dmg" Collectibles needed on Hard and Nightmare. Default: 10.
+"distance" Keys needed on Easy and Normal. Default: 0.
+"volume" Keys needed on Hard and Nightmare. Default: 0.
+"sounds" Page music set. Default: 1 (Eight Pages (4-step progression)).
+  1 = Eight Pages (4-step progression)
+  2 = 7th Street (6-step progression)
+  3 = Prison (6-step progression)
+"weapon" Tracks in the music set. Default: 4.
+Used together with sounds to offset the CD track numbers of the set.
+"style" Slender Man AI style. Default: 0 (Eight Pages).
+  0 = Eight Pages
+  1 = Slender Man's Shadow
+  2 = Weeping Angel (Prison)
+"armorvalue" Maximum aggression. Default: 0.
+If 0: 8 with the Eight Pages AI (10 on Hard and Nightmare), 100 with the other AI styles (120 on Hard and Nightmare).
+"count" Aggression per collectible. Default: 1.
+"cnt" Aggression per key. Default: 0.
+"frags" Aggression per failed door attempt. Default: 0.
+Counted each time a player touches a func_door without the matching key.
+"delay" Passive aggression interval (seconds). Default: 300.
+Seconds of play with active players between passive aggression increases.
+"ltime" Passive aggression per interval. Default: 1.
+*/
+
+/*QUAKED item_cells (0.31 0 0.78) (0 0 0) (32 32 56) LARGE_BOX - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 1 -> ":maps/b_batt1.bsp", ":maps/b_batt0.bsp" }});
+}
+Thunderbolt ammo
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+LARGE_BOX (1) : Large box
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_rockets (0.31 0 0.78) (0 0 0) (32 32 56) LARGE_BOX - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 1 -> ":maps/b_rock1.bsp", ":maps/b_rock0.bsp" }});
+}
+Rockets
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+LARGE_BOX (1) : Large box
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_shells (0.31 0 0.78) (0 0 0) (32 32 56) LARGE_BOX - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 1 -> ":maps/b_shell1.bsp", ":maps/b_shell0.bsp" }});
+}
+Shells
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+LARGE_BOX (1) : Large box
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_spikes (0.31 0 0.78) (0 0 0) (32 32 56) LARGE_BOX - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 1 -> ":maps/b_nail1.bsp", ":maps/b_nail0.bsp" }});
+}
+Nailgun/Perforator ammo
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+LARGE_BOX (1) : Large box
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_health (0 0.5 0.8) (0 0 0) (32 32 56) ROTTEN MEGAHEALTH - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 2 -> ":maps/b_bh100.bsp", spawnflags & 1 -> ":maps/b_bh10.bsp", ":maps/b_bh25.bsp" }});
+}
+Health pack
+
+-------- SPAWNFLAGS --------
+ROTTEN (1) : Rotten
+MEGAHEALTH (2) : Megahealth
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_artifact_envirosuit (0 0.5 0.8) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/suit.mdl" });
+}
+Environmental protection suit
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_artifact_super_damage (0 0.5 0.8) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/quaddama.mdl" });
+}
+Quad damage
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_artifact_invulnerability (0 0.5 0.8) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/invulner.mdl" });
+}
+Pentagram of Protection
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_artifact_invisibility (0 0.5 0.8) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/invisibl.mdl" });
+}
+Ring of Shadows
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_armorInv (0 0.5 0.8) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/armor.mdl", "skin": 2 });
+}
+Red armor (200%)
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_armor2 (0 0.5 0.8) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/armor.mdl", "skin": 1 });
+}
+Yellow armor (150%)
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_armor1 (0 0.5 0.8) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/armor.mdl" });
+}
+Green armor (100%)
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_key1 (0 0.5 0.8) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/w_s_key.mdl" });
+}
+Silver key
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_key2 (0 0.5 0.8) (-16 -16 -24) (16 16 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/w_g_key.mdl" });
+}
+Gold key
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED item_sigil (0 0.5 0.8) (-16 -16 -24) (16 16 32) EPISODE_1 EPISODE_2 EPISODE_3 EPISODE_4 - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 8 -> {"path": "progs/end4.mdl"}, spawnflags & 4 -> {"path": "progs/end3.mdl"}, spawnflags & 2 -> {"path": "progs/end2.mdl"}, "progs/end1.mdl" }});
+}
+Sigil
+
+The item_sigil is the Rune located at the end of each of the four episodes of Vanilla Quake. These Runes are persistent in that once one is collected they will stay with the player throughout the rest of the game unlike other pickups such as weapons, ammo or armor that will reset if the player enters a level named 'Start'. It serves three purposes.
+
+1) To indicate to the player that they have reached a goal in the game.
+2) To trigger a func_episodegate in the start level that is linked to the Rune.
+3) To trigger a func_bossgate in the start level once all four Runes have been collected.
+
+The last two functions are only available after the player exits a level through a ((trigger_changelevel)) and is sent to another level.
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+EPISODE_1 (1) : Episode 1
+EPISODE_2 (2) : Episode 2
+EPISODE_3 (4) : Episode 3
+EPISODE_4 (8) : Episode 4
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED weapon_supershotgun (0 0 0.78) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/g_shot.mdl" });
+}
+Double-barrelled shotgun
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED weapon_nailgun (0 0 0.78) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/g_nail.mdl" });
+}
+Nailgun
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED weapon_supernailgun (0 0 0.78) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/g_nail2.mdl" });
+}
+Super nailgun
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED weapon_grenadelauncher (0 0 0.78) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/g_rock.mdl" });
+}
+Grenade launcher
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED weapon_rocketlauncher (0 0 0.78) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/g_rock2.mdl" });
+}
+Rocket launcher
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED weapon_lightning (0 0 0.78) (-16 -16 0) (16 16 56) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/g_light.mdl" });
+}
+Thunderbolt
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"message" Message.
+"delay" Delay.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_army (0.86 0 0) (-16 -16 -24) (16 16 40) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/soldier.mdl" });
+}
+Grunt
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_dog (0.86 0 0) (-32 -32 -24) (32 32 40) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/dog.mdl" });
+}
+Nasty Doggie
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_ogre (0.86 0 0) (-32 -32 -24) (32 32 64) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/ogre.mdl" });
+}
+Ogre
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_ogre_marksman (0.86 0 0) (-32 -32 -24) (32 32 64) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/ogre.mdl" });
+}
+Ogre marksman
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_knight (0.86 0 0) (-16 -16 -24) (16 16 40) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/knight.mdl" });
+}
+Knight
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_hell_knight (0.86 0 0) (-16 -16 -24) (16 16 40) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/hknight.mdl" });
+}
+Hell knight
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_wizard (0.86 0 0) (-16 -16 -24) (16 16 40) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/wizard.mdl" });
+}
+Scrag
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_demon1 (0.86 0 0) (-32 -32 -24) (32 32 64) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/demon.mdl" });
+}
+Fiend
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_shambler (0.86 0 0) (-32 -32 -24) (32 32 64) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/shambler.mdl" });
+}
+Shambler
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_boss (0.86 0 0) (-128 -128 -24) (128 128 256) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/boss.mdl" });
+}
+Chthon
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_enforcer (0.86 0 0) (-16 -16 -24) (16 16 40) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/enforcer.mdl" });
+}
+Enforcer
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_shalrath (0.86 0 0) (-32 -32 -24) (32 32 64) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/shalrath.mdl" });
+}
+Vore
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_tarbaby (0.86 0 0) (-16 -16 -24) (16 16 24) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/tarbaby.mdl" });
+}
+Spawn
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_fish (0.86 0 0) (-16 -16 -24) (16 16 24) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/fish.mdl" });
+}
+Rotfish
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_oldone (0.86 0 0) (-16 -16 -24) (16 16 32) AMBUSH - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/oldone.mdl" });
+}
+Shub-Niggurath
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+AMBUSH (1) : Ambush
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED monster_zombie (0.86 0 0) (-16 -16 -24) (16 16 32) CRUCIFIED AMBUSH - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 1 -> {"path":"progs/zombie.mdl", "frame": 192}, "progs/zombie.mdl" }});
+}
+Zombie
+
+They rip pieces of their flesh off themselves and throw them as their attack. They have 60HP and to kill them they must be gibbed using up their full HP. If you do not, they will simply fall over, regenerate to full HP and get up again.
+
+-------- KEYS --------
+"angle" Direction.
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+CRUCIFIED (1) : Crucified. The Zombie will become a writhing crucified Zombie prop that can be used as level decoration and is not treated as a monster in game.
+AMBUSH (2) : Ambush. The Zombie will not wake up from seeing other monsters wake up or hearing sounds.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED light (1 1 0.16) (-8 -8 -8) (8 8 8) START_OFF
+Invisible light source
+
+-------- KEYS --------
+"light" Brightness. Default: 300.
+"wait" Fade distance multiplier. Default: 1.
+"delay" Attenuation.
+  0 = Linear falloff (Default)
+  1 = Inverse distance falloff
+  2 = Inverse distance squared
+  3 = No falloff
+  4 = Local minlight
+  5 = Inverse distance squared B
+"mangle" Spotlight angle.
+"style" Appearance. Default: 0 (Normal).
+  0 = Normal
+  10 = Fluorescent flicker
+  2 = Slow, strong pulse
+  11 = Slow pulse, noblack
+  5 = Gentle pulse
+  1 = Flicker A
+  6 = Flicker B
+  3 = Candle A
+  7 = Candle B
+  8 = Candle C
+  4 = Fast strobe
+  9 = Slow strobe
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+*/
+
+/*QUAKED light_fluoro (1 1 0.16) (-8 -8 -8) (8 8 8) START_OFF
+Fluorescent light
+
+-------- KEYS --------
+"light" Brightness. Default: 300.
+"wait" Fade distance multiplier. Default: 1.
+"delay" Attenuation.
+  0 = Linear falloff (Default)
+  1 = Inverse distance falloff
+  2 = Inverse distance squared
+  3 = No falloff
+  4 = Local minlight
+  5 = Inverse distance squared B
+"mangle" Spotlight angle.
+"style" Appearance. Default: 0 (Normal).
+  0 = Normal
+  10 = Fluorescent flicker
+  2 = Slow, strong pulse
+  11 = Slow pulse, noblack
+  5 = Gentle pulse
+  1 = Flicker A
+  6 = Flicker B
+  3 = Candle A
+  7 = Candle B
+  8 = Candle C
+  4 = Fast strobe
+  9 = Slow strobe
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+*/
+
+/*QUAKED light_fluorospark (1 1 0.16) (-8 -8 -8) (8 8 8) START_OFF
+Sparking fluorescent light
+
+-------- KEYS --------
+"light" Brightness. Default: 300.
+"wait" Fade distance multiplier. Default: 1.
+"delay" Attenuation.
+  0 = Linear falloff (Default)
+  1 = Inverse distance falloff
+  2 = Inverse distance squared
+  3 = No falloff
+  4 = Local minlight
+  5 = Inverse distance squared B
+"mangle" Spotlight angle.
+"style" Appearance. Default: 0 (Normal).
+  0 = Normal
+  10 = Fluorescent flicker
+  2 = Slow, strong pulse
+  11 = Slow pulse, noblack
+  5 = Gentle pulse
+  1 = Flicker A
+  6 = Flicker B
+  3 = Candle A
+  7 = Candle B
+  8 = Candle C
+  4 = Fast strobe
+  9 = Slow strobe
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+*/
+
+/*QUAKED light_globe (1 1 0.16) (-8 -8 -8) (8 8 8) START_OFF - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": "progs/s_light.spr" });
+}
+Globe light
+
+-------- KEYS --------
+"light" Brightness. Default: 300.
+"wait" Fade distance multiplier. Default: 1.
+"delay" Attenuation.
+  0 = Linear falloff (Default)
+  1 = Inverse distance falloff
+  2 = Inverse distance squared
+  3 = No falloff
+  4 = Local minlight
+  5 = Inverse distance squared B
+"mangle" Spotlight angle.
+"style" Appearance. Default: 0 (Normal).
+  0 = Normal
+  10 = Fluorescent flicker
+  2 = Slow, strong pulse
+  11 = Slow pulse, noblack
+  5 = Gentle pulse
+  1 = Flicker A
+  6 = Flicker B
+  3 = Candle A
+  7 = Candle B
+  8 = Candle C
+  4 = Fast strobe
+  9 = Slow strobe
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED light_flame_large_yellow (1 1 0.16) (-8 -8 -12) (8 8 20) START_OFF - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": "progs/flame2.mdl", "frame":1 });
+}
+Large yellow flame
+
+-------- KEYS --------
+"light" Brightness. Default: 300.
+"wait" Fade distance multiplier. Default: 1.
+"delay" Attenuation.
+  0 = Linear falloff (Default)
+  1 = Inverse distance falloff
+  2 = Inverse distance squared
+  3 = No falloff
+  4 = Local minlight
+  5 = Inverse distance squared B
+"mangle" Spotlight angle.
+"style" Appearance. Default: 0 (Normal).
+  0 = Normal
+  10 = Fluorescent flicker
+  2 = Slow, strong pulse
+  11 = Slow pulse, noblack
+  5 = Gentle pulse
+  1 = Flicker A
+  6 = Flicker B
+  3 = Candle A
+  7 = Candle B
+  8 = Candle C
+  4 = Fast strobe
+  9 = Slow strobe
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED light_flame_small_yellow (1 1 0.16) (-4 -4 -12) (4 4 20) START_OFF - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/flame2.mdl" });
+}
+Small yellow flame
+
+-------- KEYS --------
+"light" Brightness. Default: 300.
+"wait" Fade distance multiplier. Default: 1.
+"delay" Attenuation.
+  0 = Linear falloff (Default)
+  1 = Inverse distance falloff
+  2 = Inverse distance squared
+  3 = No falloff
+  4 = Local minlight
+  5 = Inverse distance squared B
+"mangle" Spotlight angle.
+"style" Appearance. Default: 0 (Normal).
+  0 = Normal
+  10 = Fluorescent flicker
+  2 = Slow, strong pulse
+  11 = Slow pulse, noblack
+  5 = Gentle pulse
+  1 = Flicker A
+  6 = Flicker B
+  3 = Candle A
+  7 = Candle B
+  8 = Candle C
+  4 = Fast strobe
+  9 = Slow strobe
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED light_flame_small_white (1 1 0.16) (-4 -4 -12) (4 4 20) START_OFF - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/flame2.mdl" });
+}
+Small white flame
+
+-------- KEYS --------
+"light" Brightness. Default: 300.
+"wait" Fade distance multiplier. Default: 1.
+"delay" Attenuation.
+  0 = Linear falloff (Default)
+  1 = Inverse distance falloff
+  2 = Inverse distance squared
+  3 = No falloff
+  4 = Local minlight
+  5 = Inverse distance squared B
+"mangle" Spotlight angle.
+"style" Appearance. Default: 0 (Normal).
+  0 = Normal
+  10 = Fluorescent flicker
+  2 = Slow, strong pulse
+  11 = Slow pulse, noblack
+  5 = Gentle pulse
+  1 = Flicker A
+  6 = Flicker B
+  3 = Candle A
+  7 = Candle B
+  8 = Candle C
+  4 = Fast strobe
+  9 = Slow strobe
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED light_torch_small_walltorch (1 1 0.16) (-4 -4 -12) (4 4 20) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/flame.mdl" });
+}
+Small walltorch
+
+-------- KEYS --------
+"light" Brightness. Default: 300.
+"wait" Fade distance multiplier. Default: 1.
+"delay" Attenuation.
+  0 = Linear falloff (Default)
+  1 = Inverse distance falloff
+  2 = Inverse distance squared
+  3 = No falloff
+  4 = Local minlight
+  5 = Inverse distance squared B
+"mangle" Spotlight angle.
+"style" Appearance. Default: 0 (Normal).
+  0 = Normal
+  10 = Fluorescent flicker
+  2 = Slow, strong pulse
+  11 = Slow pulse, noblack
+  5 = Gentle pulse
+  1 = Flicker A
+  6 = Flicker B
+  3 = Candle A
+  7 = Candle B
+  8 = Candle C
+  4 = Fast strobe
+  9 = Slow strobe
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_illusionary (0 0.5 0.8) ? - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Static nonsolid model
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED air_bubbles (0 0.59 0.86) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/s_bubble.spr" });
+}
+Air bubbles
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED event_lightning (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Chthon's lightning
+
+-------- KEYS --------
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED misc_fireball (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/lavaball.mdl" });
+}
+Small fireball
+
+-------- KEYS --------
+"speed" Speed. Default: 40.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED misc_explobox (0 0.5 0.8) (0 0 0) (32 32 64) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":maps/b_explob.bsp" });
+}
+Large exploding container
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED misc_explobox2 (0 0.5 0.8) (0 0 0) (32 32 32) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":maps/b_exbox2.bsp" });
+}
+Small exploding container
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED misc_teleporttrain (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": ":progs/teleport.mdl" });
+}
+Flying teleporter destination
+
+-------- KEYS --------
+"targetname" Name.
+"target" First stop target.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trap_spikeshooter (0 0.5 0.8) (-8 -8 -8) (8 8 8) SUPERSPIKE LASER - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 2 -> ":progs/laser.mdl", spawnflags & 1 -> ":progs/s_spike.mdl", ":progs/s_spike.mdl" }});
+}
+Triggered shooter
+
+Fires a stream of spikes when triggered. By default it fires a normal spike doing 9 HP of damage, and by setting it's spawnflags can be made to fire a 18 HP superspike or a 15 HP laser shot.
+
+-------- KEYS --------
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+no flag : Spike. 9 HP
+SUPERSPIKE (1) : Superspike. 18 HP
+LASER (2) : Laser. 15 HP
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trap_shooter (0.86 0.59 0.59) (-8 -8 -8) (8 8 8) SUPERSPIKE LASER - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({{ spawnflags & 2 -> ":progs/laser.mdl", spawnflags & 1 -> ":progs/s_spike.mdl", ":progs/s_spike.mdl" }});
+}
+Continuous shooter
+
+Fires continous stream of spikes with options to delay the 1st shot and then set a single delay time of every shot there after. By default it fires a normal spike doing 9 HP of damage, and by setting it's spawnflags can be made to fire a 18 HP superspike or a 15 HP laser shot.
+
+-------- KEYS --------
+"nextthink" Delay before first spike.
+"wait" Delay between spikes.
+
+-------- SPAWNFLAGS --------
+no flag : Spike. 9 HP
+SUPERSPIKE (1) : Superspike. 18 HP
+LASER (2) : Laser. 15 HP
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_group (0 0.5 0.8) ?
+Group of brushes for in-editor use
+*/
+
+/*QUAKED func_detail (0 0.5 0.8) ?
+Group of brushes for certain compilers
+*/
+
+/*QUAKED func_detail_illusionary (0 0.5 0.8) ?
+func_detail variant with no collision (players / monsters / gunfire) and doesn't split world faces.
+*/
+
+/*QUAKED func_detail_wall (0 0.5 0.8) ?
+func_detail variant that doesn't split world faces.
+*/
+
+/*QUAKED ambient_drip (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Dripping sound
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED ambient_drone (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Engine/machinery sound
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED ambient_comp_hum (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Computer background sounds
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED ambient_flouro_buzz (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Fluorescent buzzing sound
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED ambient_light_buzz (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Buzzing sound from light
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED ambient_suck_wind (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Wind sound
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED ambient_swamp1 (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Frogs croaking
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED ambient_swamp2 (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Frogs croaking B
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED ambient_thunder (0.59 0 0.59) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Thunder sound
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_door (0 0.5 0.8) ? STARTS_OPEN - DONT_LINK GOLD_KEY_REQUIRED SILVER_KEY_REQUIRED TOGGLE - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Basic door
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"target" Target.
+"killtarget" Killtarget.
+"speed" Speed. Default: 100.
+"sounds" Sound. Default: 0 (Silent).
+  0 = Silent
+  1 = Stone
+  2 = Machine
+  3 = Stone Chain
+  4 = Screechy Metal
+"wait" Wait before close. Default: 3.
+"lip" Lip. Default: 8.
+"dmg" Damage inflicted when blocked. Default: 2.
+"message" Message if touched.
+"health" Health (shootable). Default: 0.
+"key_targetname" Slender key door: key_target of the key that opens it.
+"netname" Slender key door: name shown in messages.
+
+-------- SPAWNFLAGS --------
+STARTS_OPEN (1) : Starts Open
+DONT_LINK (4) : Don't link
+GOLD_KEY_REQUIRED (8) : Gold Key required
+SILVER_KEY_REQUIRED (16) : Silver Key required
+TOGGLE (32) : Toggle
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_door_secret (0 0.5 0.8) ? OPEN_ONCE MOVE_LEFT_FIRST MOVE_DOWN_FIRST NOT_SHOOTABLE ALWAYS_SHOOTABLE - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Secret door
+
+-------- KEYS --------
+"targetname" Name.
+"target" Target.
+"killtarget" Killtarget.
+"angle" Direction of second move.
+"t_width" First move length.
+"t_length" Second move length.
+"dmg" Damage when blocked. Default: 2.
+"wait" Wait before close. Default: 2.
+"sounds" Sounds. Default: 3 (Base).
+  1 = Medieval
+  2 = Metal
+  3 = Base
+"message" Message.
+
+-------- SPAWNFLAGS --------
+OPEN_ONCE (1) : Open once
+MOVE_LEFT_FIRST (2) : Move left first
+MOVE_DOWN_FIRST (4) : Move down first
+NOT_SHOOTABLE (8) : Not shootable
+ALWAYS_SHOOTABLE (16) : Always shootable
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_wall (0 0.5 0.8) ? - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Wall, starts animation when triggered (if supporting texture)
+
+-------- KEYS --------
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_button (0 0.5 0.8) ? - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Button
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"speed" Speed. Default: 40.
+"lip" Lip. Default: 4.
+"target" Target.
+"health" Health (shootable).
+"sounds" Sounds.
+  0 = Steam metal
+  1 = Wooden clunk
+  2 = Metallic clink
+  3 = In-out
+"wait" Wait before reset. Default: 1.
+"delay" Delay before trigger.
+"message" Message.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_train (0 0.5 0.8) ? - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Moving platform
+
+-------- KEYS --------
+"targetname" Name.
+"sounds" Sound. Default: 1 (Ratchet Metal).
+  0 = Silent
+  1 = Ratchet Metal
+"speed" Speed (units per second). Default: 64.
+"target" Target to start at.
+"dmg" Damage on block. Default: 2.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED path_corner (0 1 1) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Waypoint for platforms and monsters
+
+-------- KEYS --------
+"targetname" Name.
+"target" Next target.
+"wait" Wait. Default: 0.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_plat (0 0.5 0.8) ? LOW_TRIGGER_VOLUME - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Elevator
+
+-------- KEYS --------
+"targetname" Name.
+"speed" Speed. Default: 150.
+"height" Travel altitude (can be negative). Default: 0.
+"sounds" Sound. Default: 1 (Base fast).
+  0 = None
+  1 = Base fast
+  2 = Chain Slow
+
+-------- SPAWNFLAGS --------
+LOW_TRIGGER_VOLUME (1) : Low trigger volume
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_episodegate (0 0.5 0.8) ? EPISODE_1 EPISODE_2 EPISODE_3 EPISODE_4 - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Episode Gate
+
+-------- SPAWNFLAGS --------
+EPISODE_1 (1) : Episode 1
+EPISODE_2 (2) : Episode 2
+EPISODE_3 (4) : Episode 3
+EPISODE_4 (8) : Episode 4
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_bossgate (0 0.5 0.8) ? - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Boss gate
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_bobbing (0 0.5 0.8) ? START_OFF CRUSHER_NO_REVERSE NON_SOLID STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Bobbing por from alkaline/dp300 by Rel71  29/oct/2026
+
+Moves on a cosine wave between pos1 and pos2 and back, once every wait seconds. By default pos1 is the position where it was built and pos2 is pos1 minus distance along angle. If pos1 or pos2 is set, angle and distance are ignored and both are used as given. They are values for the entity origin: offsets from the built position for a brush without an origin brush, world positions otherwise. The phase comes from absolute time, so movers with the same wait stay in sync. Setting mdl replaces the brush with that alias model.
+Triggering it toggles it on and off. With a stop flag it keeps moving until it reaches that position; with several, it stops at the first one reached.
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"wait" Period (seconds). Default: 4.
+"distance" Travel distance. Default: 64.
+"delay" Starting phase (0-1). Default: 0.
+0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
+"pos1" pos1 origin (X Y Z).
+"pos2" pos2 origin (X Y Z).
+"dmg" Damage when blocked. Default: 2.
+"mdl" Alias model to display (always non-solid).
+"alpha" Alpha (empty or 0 = opaque).
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+CRUSHER_NO_REVERSE (2) : Crusher (no reverse)
+NON_SOLID (4) : Non-solid
+STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
+STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
+STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
+RANDOM_PHASE (64) : Random phase. Overrides delay.
+START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_bobbing_fade (0 0.5 0.8) ? START_OFF CRUSHER_NO_REVERSE SOLID STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Bobbing mover with distance fade made by Rel71 29/oct/2026
+
+Same movement and trigger behavior as func_bobbing. Its alpha is interpolated between alpha_near and alpha_far by the distance from the nearest living player to the entity's bounding box, so it is 0 anywhere inside it. Non-solid by default. Meant for fog volumes.
+While it is outside the player's PVS it stops moving, and it resumes at the same phase when visible again.
+Alpha 0 renders opaque in the network protocol, so the computed alpha never goes below 0.001 (invisible). An alpha_near of 0 becomes 0.001 and an alpha_far of 0 becomes 1.
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"wait" Period (seconds). Default: 4.
+"distance" Travel distance. Default: 64.
+"delay" Starting phase (0-1). Default: 0.
+0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
+"pos1" pos1 origin (X Y Z).
+"pos2" pos2 origin (X Y Z).
+"dmg" Damage when blocked. Default: 2.
+"mdl" Alias model to display (always non-solid).
+"alpha_near" Alpha at dist_near or closer. Default: 0.001.
+"alpha_far" Alpha at dist_far or farther. Default: 1.
+"dist_near" Distance where the fade ends. Default: 96.
+"dist_far" Distance where alpha_far is reached (default dist_near + 256).
+"flicker_amp" Flicker amount (0 = off, 0.15 = +/-15%). Default: 0.
+"flicker_rate" Flicker cycles per second. Default: 0.4.
+The think runs at 10 Hz at most, so values above 1 look stroboscopic.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+CRUSHER_NO_REVERSE (2) : Crusher (no reverse)
+SOLID (4) : Solid. Brush only. An alias model set in mdl is always non-solid.
+STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
+STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
+STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
+RANDOM_PHASE (64) : Random phase. Overrides delay.
+START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED misc_bobbing (0 0.5 0.8) (-8 -8 -8) (8 8 8) START_OFF - - STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": mdl });
+}
+Bobbing alias model
+function restored by Rel71 29/oct/2026
+Point version of func_bobbing for the model set in mdl, which is required. Same movement, keys and trigger behavior. Always non-solid.
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"wait" Period (seconds). Default: 4.
+"distance" Travel distance. Default: 64.
+"delay" Starting phase (0-1). Default: 0.
+0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
+"pos1" pos1 origin (X Y Z).
+"pos2" pos2 origin (X Y Z).
+"dmg" Damage when blocked. Default: 2.
+"mdl" Alias model to display (always non-solid).
+"alpha" Alpha (empty or 0 = opaque).
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
+STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
+STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
+RANDOM_PHASE (64) : Random phase. Overrides delay.
+START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_changelevel (0 0.5 0.8) ? NO_INTERMISSION - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Change level
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"sounds" Sound style. Default: 0 (None).
+  0 = None
+  1 = Secret sound
+  2 = Beep beep
+  3 = Large switch
+"delay" Delay before trigger. Default: 0.
+"message" Message.
+"map" Next map.
+
+-------- SPAWNFLAGS --------
+NO_INTERMISSION (1) : No intermission
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_once (0 0.5 0.8) ? NOT_TOUCHABLE - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Activate once
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"sounds" Sound style. Default: 0 (None).
+  0 = None
+  1 = Secret sound
+  2 = Beep beep
+  3 = Large switch
+"delay" Delay before trigger. Default: 0.
+"message" Message.
+"health" Health (shootable).
+
+-------- SPAWNFLAGS --------
+NOT_TOUCHABLE (1) : Not touchable
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_multiple (0 0.5 0.8) ? NOT_TOUCHABLE - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Activate multiple
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"sounds" Sound style. Default: 0 (None).
+  0 = None
+  1 = Secret sound
+  2 = Beep beep
+  3 = Large switch
+"delay" Delay before trigger. Default: 0.
+"message" Message.
+"wait" Wait before reset. Default: 0.2.
+"health" Health (shootable).
+
+-------- SPAWNFLAGS --------
+NOT_TOUCHABLE (1) : Not touchable
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_onlyregistered (0 0.5 0.8) ? NOT_TOUCHABLE - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Registered only
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"sounds" Sound style. Default: 0 (None).
+  0 = None
+  1 = Secret sound
+  2 = Beep beep
+  3 = Large switch
+"delay" Delay before trigger. Default: 0.
+"message" Message.
+
+-------- SPAWNFLAGS --------
+NOT_TOUCHABLE (1) : Not touchable
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_secret (0 0.5 0.8) ? NOT_TOUCHABLE - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Secret
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"sounds" Sound. Default: 1 (Secret sound).
+  1 = Secret sound
+  2 = Beep beep
+"delay" Delay before trigger. Default: 0.
+"message" Message.
+
+-------- SPAWNFLAGS --------
+NOT_TOUCHABLE (1) : Not touchable
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_teleport (0 0.5 0.8) ? PLAYER_ONLY SILENT - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Teleporter
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+
+-------- SPAWNFLAGS --------
+PLAYER_ONLY (1) : Player only
+SILENT (2) : Silent
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_setskill (0 0.5 0.8) ? - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Set skill
+
+-------- KEYS --------
+"message" Skill to change to. Default: 1 (Medium).
+  0 = Easy
+  1 = Medium
+  2 = Hard
+  3 = Nightmare!
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_relay (0 0.5 0.8) (-8 -8 -8) (8 8 8) - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Relay
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"sounds" Sound style. Default: 0 (None).
+  0 = None
+  1 = Secret sound
+  2 = Beep beep
+  3 = Large switch
+"delay" Delay before trigger. Default: 0.
+"message" Message.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_monsterjump (0 0.5 0.8) ? - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Monster jump
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"speed" Jump Speed. Default: 200.
+"height" Jump Height. Default: 200.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_counter (0 0.5 0.8) (-8 -8 -8) (8 8 8) NO_MESSAGE - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Counter
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"count" Count before trigger. Default: 2.
+"delay" Delay.
+"message" Message.
+
+-------- SPAWNFLAGS --------
+NO_MESSAGE (1) : No Message
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_push (0 0.5 0.8) ? PUSH_ONCE - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Push
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"speed" Speed. Default: 1000.
+
+-------- SPAWNFLAGS --------
+PUSH_ONCE (1) : Push once
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED trigger_hurt (0 0.5 0.8) ? - - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Trigger: Hurt
+
+-------- KEYS --------
+"targetname" Name.
+"dmg" Damage per second. Default: 5.
+
+-------- SPAWNFLAGS --------
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED misc_noisemaker (0 0.5 0.8) (-8 -8 -8) (8 8 8)
+Debug entity: continuously plays enforcer sounds
+*/
+
+/*QUAKED viewthing (0 0.5 0.8) (-8 -8 -8) (8 8 8)
+Debug entity: fake player model
+*/
+

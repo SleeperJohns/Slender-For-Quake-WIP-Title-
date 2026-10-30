@@ -1,7 +1,8 @@
-// SSQC Section
+﻿// SSQC Section
 ../progs.dat
 
 SSQC/defs.qc
+SSQC/math.qc //-----by Rel71 29/oct/2026
 SSQC/subs.qc
 SSQC/slender/sm_defs.qc
 SSQC/fight.qc
@@ -18,6 +19,11 @@ SSQC/buttons.qc
 SSQC/triggers.qc
 SSQC/plats.qc
 SSQC/misc.qc
+//---- Rel_71 terror code (Ñ) ----------------
+//-fogs and bobs functions 29/oct/2026
+SSQC/Overfuncbobing.qc
+SSQC/Overfuncbob_fade.qc
+//---------------------------------------------
 
 // Sleeper: Slender Man stuff.
 SSQC/slender/sm_doors.qc
