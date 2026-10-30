@@ -1,2 +1,18 @@
 game SlenderMod
 map slender_testmap 
+game slendermod
+map FogTest 
+r_showbboxes1
+r_showbboxes 1
+game slendermod
+map FogTest 
+game slendermod
+map FogTest 
+game slendermod
+map FogTest 
+game slendermod
+map FogTest 
+game slendermod
+map FogTest 
+game slendermod
+map FogTest 
