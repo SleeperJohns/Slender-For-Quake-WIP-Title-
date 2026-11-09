@@ -52,7 +52,7 @@ float() SM_Event_Count_Mementos =
     local entity mementos;
     local float  memento_count = 0;
 
-    for (mementos = find(world, classname, "item_page"); mementos; mementos = find(mementos, classname, "item_page")) memento_count += 1; // Sleeper: Count for pages.
+    for (mementos = find(world, classname, "item_memento"); mementos; mementos = find(mementos, classname, "item_memento")) memento_count += 1; // Sleeper: Count for mementos.
     return memento_count;
 };
 
@@ -76,7 +76,14 @@ void() SM_Event_SetMax_Collectibles =
 void() SM_Event_Spawn_Slenderman =
 {
     local entity spot = SelectSlenderSpawnPoint (); // Sleeper: We should only ever need one, even though we might have multiple slender men walking around.
-    func_SpawnEnemy (spot.origin, spot.angles, self.style, "monster_slenderman", monster_slenderman);
+    func_SpawnEnemy 
+    (
+        spot.origin, 
+        spot.angles, 
+        self.style, 
+        "monster_slenderman", 
+        monster_slenderman
+    );
 };
 
 void(string item) SM_Event_Despawn_Item =
@@ -301,7 +308,7 @@ void() SM_Event_Reset =
     sm_current_track = 2; // Sleeper: Null out the music.
     sm_event_clock = sm_activeplayer_timecount = 0; // Sleeper: Zero out everything.  
 
-    if (sm_world_clock >= ((60 * 60) * 3)) // Sleeper: Every 3 hours, restart the server.
+    if (time >= ((60 * 60) * 3)) // Sleeper: Every 3 hours, restart the server.
     {
         localcmd ("restart\n");
         return;
@@ -315,6 +322,22 @@ void() SM_Event_Reset =
 
 void(entity pl) SM_Event_Player_Keys = // Sleeper: Mechanically useless, but gives somewhat an indicator of how many keys we have.
 {
+    local entity client = find(world, classname, "player");
+    local entity keychain = world;
+
+    while (client != world)
+    {
+        if (client.next_key != world) // Sleeper: If a player has a key chain, assign it to the current player in that's called within the loop.
+        {
+            keychain = client.next_key; // Sleeper: Key chain found, now save it and then break the loop.
+            break;
+        }
+        
+        client = find(client, classname, "player");
+    }
+
+    if (pl.next_key != keychain) pl.next_key = keychain; // Sleeper: Assign the key chain to the current player within the loop. This creates a global key chain that all players have access to.
+
     if (sm_keys > 0)
     {
         if (sm_keys <= 1)
@@ -333,50 +356,54 @@ void(entity pl) SM_Event_Player_Keys = // Sleeper: Mechanically useless, but giv
     pl.items &= ~IT_KEY2; // Sleeper: Remove Gold Key.
 };
 
-void(entity pl)  SM_Event_Player_CleanInv =
+void(entity pl) SM_Event_Player_CleanInv = // Sleeper: Yeah, yeah, I know, we should have this be done by parms decoding.
 {
-    local float keys;
+    local entity client = pl;
+    local float  keys = client.items & (IT_KEY1 | IT_KEY2); // Sleeper: Isolate key bits.
 
-    if (pl.ltime <= 0)
-    {
-        keys = pl.items & (IT_KEY1 | IT_KEY2); // Sleeper: Isolate key bits.
+    if (client.ltime > 0) return; // Sleeper: Stop clearing the inventory after the first local frametime.
 
-        pl.items = 0; // Sleeper: Wipe inventory completely.
-        pl.items |= keys; // Sleeper: If keys exist, add them.
+    client.items = 0; // Sleeper: Wipe inventory completely.
+    client.items |= keys; // Sleeper: If keys exist, add them.
 
-        // Sleeper: Remove ammo.
-        pl.ammo_shells = pl.ammo_nails = pl.ammo_rockets = pl.ammo_cells = pl.currentammo = 0;
+    // Sleeper: Remove ammo.
+    client.ammo_shells = client.ammo_nails = client.ammo_rockets = client.ammo_cells = client.currentammo = 0;
 
-        // Sleeper: Remove current weapon.
-        pl.weapon = pl.weaponframe = 0;
-        pl.weaponmodel = "";
-        SUB_CallAsSelf (pl, W_SetCurrentAmmo);
-    }
-
-    pl.ltime += 0.1;
+    // Sleeper: Remove current weapon.
+    client.weapon = client.weaponframe = 0;
+    client.weaponmodel = "";
+    SUB_CallAsSelf (client, W_SetCurrentAmmo);
 };
-
 
 void(entity pl) SM_Event_Player_Inventory =
 {
-    SM_Event_Player_Keys (pl);
-    SM_Event_Player_CleanInv (pl);
+    SM_Event_Player_Keys (pl); // Sleeper: Apply a global live-inventory for keys.
+    SM_Event_Player_CleanInv (pl); // Sleeper: Not having dinner, until you CLEAN THOSE FILTHY HANDS!
+};
+
+void(entity pl) SM_Event_Player =
+{
+    SM_Event_Player_Inventory (pl); // Sleeper: Apply player inventory instructions.
+    pl.ltime += 0.1; // Sleeper: Tick up each player's local timer.
 };
 
 void() SM_Event_Player_Loop =
 {
     local entity pl = find(world, classname, "player");
+    local entity next_pl;
+
     while (pl != world)
     {
-        SM_Event_Player_Inventory (pl);  
-        pl = find(pl, classname, "player");
+        next_pl = find(pl, classname, "player"); // Sleeper: Save off the next player.
+        SM_Event_Player (pl); // Sleeper: Provide event instructions for this player.
+        pl = next_pl; // Sleeper: Move onto the next player.
     }
 };
 
 void() SM_Event_ActivePlayers =
 {
-    local float interval = self.delay;
-    local float penalty = self.ltime;
+    local float interval = self.delay; // Sleeper: What is the rate of the penalty?
+    local float penalty = self.ltime; // Sleeper: What is the value of the penalty?
 
     if (!SM_Check_ActivePlayers()) // Sleeper: If there are no active players, remove all Slender monsters from the map.
     {
@@ -427,7 +454,7 @@ void() SM_Event_Pipeline = // Sleeper: All events must run through here.
     SM_Event_ActiveMonsters (); // Sleeper: Monster routines.
 };
 
-void() SM_Events =
+void() SM_Events = // Sleeper: Holy shit, it's a supernest!
 {
     self.nextthink = time + 0.1;
     self.think = SM_Events; // Sleeper: Keep the event manager running.
@@ -454,7 +481,7 @@ void() event_manager =
     sm_inactivity_clock = sm_world_clock = sm_event_clock = sm_activeplayer_timecount = sm_collectibles = sm_keys = sm_keys_failed = sm_slenderman_aggression = 0; // Sleeper: We haven't spawned Slender Man yet.
 
     // Sleeper: Mainly for mapping if mappers want to set their difficulty curves. Default is based off of Eight Pages.
-    // Sleeper: I will change these field names to more user friendly, so it all make sense (actually this should have been done since the beginning).
+    // I will change these field names to a more user friendly, so it all make sense (actually this should have been done since the beginning).
     if (!self.wait) self.wait = (SM_Event_Count_Collectibles() < 8) ? SM_Event_Count_Collectibles() : 8; // Sleeper: Minimum collectible target (used for Easy and Normal skill).
     if (!self.dmg) self.dmg = 10; // Sleeper: Maximum collectible target (use for Hard skill and higher).
     if (!self.distance) self.distance = 0; // Sleeper: Minimum keys.

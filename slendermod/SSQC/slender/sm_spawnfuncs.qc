@@ -33,8 +33,8 @@ void() info_page_spot = // Sleeper: This gives pages a preassigned spawn placeme
     if (self.ent_mdl) precache_model (self.ent_mdl); 
     if (self.ent_snd) precache_sound (self.ent_snd);
 };
-// Sleeper: Each of the above info spots is equipped with 2 strings to allow mappers to freely set a model and sound. 
-// The purpose of these strings are to pass through models or sounds to pickup items without worrying about precaching.
+// Sleeper: Each of the above info spots is equipped with 2 string fields to allow mappers to freely set a model and sound. 
+// The purpose of these string fields are to pass through models or sounds to pickup items without worrying about precaching.
 // Useful if people simply care only about mapping.
 
 void(vector pos, vector angle, float id, string mdl, string snd, string clname, void() func) func_SpawnItem =

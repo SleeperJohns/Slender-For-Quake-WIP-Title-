@@ -51,14 +51,14 @@ float sm_spawned_items;
 float SM_SMS_TRACKCOUNT = 6;
 float SM_EIGHTPAGES_TRACKCOUNT = 4;
 
-enumflags 
+enumflags // Sleeper: States used by the event manager.
 {
     SM_INACTIVE_MONSTERS = 0,
     SM_SLENDERMAN_ACTIVE = 1
     // Sleeper: Room for other known characters from the Slender Man mythos, like Kate, and Charlie. However, I wouldn't recommend having more than one mitosis of Slender Man if we use those characters.
 };
 
-enum 
+enum // Sleeper: What music set we want to use?
 {
 	SM_NONE_MUSIC = 0, 
     SM_EIGHT_PAGES_MUSICSET = 1,
@@ -66,7 +66,7 @@ enum
     SM_PRISON_MUSICSET = 3
 };
 
-enum
+enum // Sleeper: Music tracklist.
 {
     SM_TRACK1 = 0,
     SM_TRACK2 = 1,
@@ -76,7 +76,7 @@ enum
     SM_TRACK6 = 5
 };
 
-enum 
+enum // Sleeper: Slender Man's AI types.
 {
     SM_AI_EIGHT_PAGES = 0, // Sleeper: The original Slender Man AI.
     SM_AI_SLENDER_SHADOW = 1, // Sleeper: The normal Slender Man's Shadow AI
@@ -92,7 +92,7 @@ enum
 
 void() PrecacheSlenderItems =
 {
-    // Anything that can be picked up.
+    // Anything that can be picked up. Mostly for defaults.
     // Pages
     // Mementos
     // Keys

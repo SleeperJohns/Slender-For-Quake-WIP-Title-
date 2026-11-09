@@ -17,7 +17,7 @@ void() sm_collectible_touch =
     while (pl != world)
     {
         centerprint (pl, sprintf("%s%s\n", ptxt, (sm_collectibles == sm_max_collectibles) ? "\nFind the exit and escape!" : ""));
-        pl = find(pl, classname, "player"); // Sleeper: Move to the next player.
+        pl = find(pl, classname, "player");
     }
 
     sprint (other, sprintf("You got a %s\n", stxt));
