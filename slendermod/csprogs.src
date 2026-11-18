@@ -1,0 +1,20 @@
+// CSQC Section
+//------------- MOD 15/NOV/2026  cliente del Slender, simple CSQC de Ironwail
+// se compila aparte igual que progs.src, csprogs.dat queda al lado de progs.dat
+//------------- MOD 17/NOV/2026  salida desde la carpeta de este archivo
+csprogs.dat
+
+// definiciones
+CSQC/cl_defs.qc
+CSQC/cl_csdefs.qc
+CSQC/cl_stats.qc
+
+// utilidades
+CSQC/cl_util.qc
+
+// modulos
+CSQC/Over_hud_rain.qc
+CSQC/cl_hud.qc
+
+// entradas del motor, al final porque llaman a los modulos (sin autoproto)
+CSQC/cl_main.qc

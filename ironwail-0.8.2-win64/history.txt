@@ -16,3 +16,12 @@ game slendermod
 map FogTest 
 game slendermod
 map FogTest 
+game slendermod 
+map Testhall21 
+game slendermod 
+map Testhall21 
+game slendermod 
+map Testhall21 
+restart
+game slendermod 
+map Testhall21 

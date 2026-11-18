@@ -1,5 +1,6 @@
 ﻿// SSQC Section
-../progs.dat
+//------------- MOD 17/NOV/2026  la salida se cuenta desde la carpeta de este archivo, asi queda en slendermod
+progs.dat
 
 SSQC/defs.qc
 SSQC/math.qc //-----by Rel71 29/oct/2026
@@ -23,6 +24,11 @@ SSQC/misc.qc
 //-fogs and bobs functions 29/oct/2026
 SSQC/Overfuncbobing.qc
 SSQC/Overfuncbob_fade.qc
+//------------- MOD 15/NOV/2026  lluvia de cliente, par de CSQC/Over_hud_rain.qc
+// va despues de Overfuncbob_fade.qc, que declara .alpha
+SSQC/Over_rain_client.qc
+//------------- MOD 17/NOV/2026  lluvia de entidades, func_rainzone e info_rain, despues de Over_rain_client.qc
+SSQC/Over_ambient_fx.qc
 //---------------------------------------------
 
 // Sleeper: Slender Man stuff.
@@ -54,6 +60,3 @@ SSQC/monsters/quake_monsters/oldone.qc
 // Custom Monsters go here
 SSQC/monsters/slender_monsters/slenderman.qc
 
-// CSQC Section
-// ../csprogs.dat
-// CSQC/.qc

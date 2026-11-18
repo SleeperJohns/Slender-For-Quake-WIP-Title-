@@ -1042,10 +1042,16 @@ PlayerPostThink
 Called every frame after physics are run
 ================
 */
+//------------- MOD 15/NOV/2026  lluvia de cliente, vive en Over_rain_client.qc
+void() RainC_Frame;
+
 void() PlayerPostThink =
 {
 	if (self.view_ofs == '0 0 0')
 		return; // intermission or finale
+
+	RainC_Frame();   //------------- MOD 15/NOV/2026  antes del return de muerto, la lluvia sigue al morir
+
 	if (self.deadflag)
 		return;
 
