@@ -241,7 +241,6 @@ void() func_bobbing =
 	//-------------MOD Rev2 29/octubre/2026  port al servidor del Slender
 	// SUB_Inhibit es de progs_dump y aca no existe  los flags de skill y
 	// deathmatch los filtra el motor al cargar el mapa
-	// ORIGINAL: if (SUB_Inhibit()) return;   // dp300/Copper chequeo de inhibicion (skill/dm/coop)
 
 	if (self.mdl != "")
 		precache_model(self.mdl);

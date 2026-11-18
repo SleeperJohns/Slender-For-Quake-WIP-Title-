@@ -330,7 +330,6 @@ void() func_bobbing_fade =
     //------------- 29/octubre/2026  port al servidor del Slender
     // SUB_Inhibit es de progs_dump y aca no existe  los flags de skill y
     // deathmatch los filtra el motor al cargar el mapa
-    // ORIGINAL: if (SUB_Inhibit()) return;
 
     if (self.mdl != "") precache_model(self.mdl);
 

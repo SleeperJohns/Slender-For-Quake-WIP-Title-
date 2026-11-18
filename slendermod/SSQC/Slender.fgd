@@ -575,81 +575,6 @@ Fires continous stream of spikes with options to delay the 1st shot and then set
 
 @SolidClass base(Appearflags) = func_bossgate : "Boss gate" []
 
-//---- MOD Rev2 29/octubre/2026
-// bobbing movers from Overfuncbobing.qc and Overfuncbob_fade.qc
-// noise, noise1 and sounds are not listed: train_sounds() is disabled and noise is never precached
-
-@baseclass base(Angle, Appearflags, Targetname) = Bob
-[
-	wait(string) : "Period (seconds)" : "4"
-	distance(integer) : "Travel distance" : 64
-	delay(string) : "Starting phase (0-1)" : "0" : "0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag."
-	pos1(string) : "pos1 origin (X Y Z)"
-	pos2(string) : "pos2 origin (X Y Z)"
-	dmg(integer) : "Damage when blocked" : 2
-	mdl(string) : "Alias model to display (always non-solid)"
-]
-
-@SolidClass base(Bob) = func_bobbing : "Bobbing mover
-
-Moves on a cosine wave between pos1 and pos2 and back, once every wait seconds. By default pos1 is the position where it was built and pos2 is pos1 minus distance along angle. If pos1 or pos2 is set, angle and distance are ignored and both are used as given. They are values for the entity origin: offsets from the built position for a brush without an origin brush, world positions otherwise. The phase comes from absolute time, so movers with the same wait stay in sync. Setting mdl replaces the brush with that alias model.
-Triggering it toggles it on and off. With a stop flag it keeps moving until it reaches that position; with several, it stops at the first one reached."
-[
-	spawnflags(flags) =
-	[
-		1 : "Start off" : 0
-		2 : "Crusher (no reverse)" : 0
-		4 : "Non-solid" : 0
-		8 : "Stop at pos2 when turned off" : 0
-		16 : "Stop at midpoint when turned off" : 0
-		32 : "Stop at pos1 when turned off" : 0
-		64 : "Random phase" : 0 : "Overrides delay."
-		128 : "Start invisible" : 0 : "Spawns on the first trigger. Later triggers toggle it."
-	]
-	alpha(string) : "Alpha (empty or 0 = opaque)"
-]
-
-@SolidClass base(Bob) = func_bobbing_fade : "Bobbing mover with distance fade
-
-Same movement and trigger behavior as func_bobbing. Its alpha is interpolated between alpha_near and alpha_far by the distance from the nearest living player to the entity's bounding box, so it is 0 anywhere inside it. Non-solid by default. Meant for fog volumes.
-While it is outside the player's PVS it stops moving, and it resumes at the same phase when visible again.
-Alpha 0 renders opaque in the network protocol, so the computed alpha never goes below 0.001 (invisible). An alpha_near of 0 becomes 0.001 and an alpha_far of 0 becomes 1."
-[
-	spawnflags(flags) =
-	[
-		1 : "Start off" : 0
-		2 : "Crusher (no reverse)" : 0
-		4 : "Solid" : 0 : "Brush only. An alias model set in mdl is always non-solid."
-		8 : "Stop at pos2 when turned off" : 0
-		16 : "Stop at midpoint when turned off" : 0
-		32 : "Stop at pos1 when turned off" : 0
-		64 : "Random phase" : 0 : "Overrides delay."
-		128 : "Start invisible" : 0 : "Spawns on the first trigger. Later triggers toggle it."
-	]
-	alpha_near(string) : "Alpha at dist_near or closer" : "0.001"
-	alpha_far(string) : "Alpha at dist_far or farther" : "1"
-	dist_near(integer) : "Distance where the fade ends" : 96
-	dist_far(integer) : "Distance where alpha_far is reached (default dist_near + 256)"
-	flicker_amp(string) : "Flicker amount (0 = off, 0.15 = +/-15%)" : "0"
-	flicker_rate(string) : "Flicker cycles per second" : "0.4" : "The think runs at 10 Hz at most, so values above 1 look stroboscopic."
-]
-
-@PointClass base(Bob) size(-8 -8 -8, 8 8 8) color(0 128 204) model({ "path": mdl }) = misc_bobbing : "Bobbing alias model
-
-Point version of func_bobbing for the model set in mdl, which is required. Same movement, keys and trigger behavior. Always non-solid."
-[
-	spawnflags(flags) =
-	[
-		1 : "Start off" : 0
-		8 : "Stop at pos2 when turned off" : 0
-		16 : "Stop at midpoint when turned off" : 0
-		32 : "Stop at pos1 when turned off" : 0
-		64 : "Random phase" : 0 : "Overrides delay."
-		128 : "Start invisible" : 0 : "Spawns on the first trigger. Later triggers toggle it."
-	]
-	alpha(string) : "Alpha (empty or 0 = opaque)"
-]
-
 //
 // triggers
 //
@@ -747,3 +672,145 @@ Point version of func_bobbing for the model set in mdl, which is required. Same 
 ]
 @PointClass size(16 16 16) = misc_noisemaker : "Debug entity: continuously plays enforcer sounds" []
 @PointClass size(16 16 16) = viewthing : "Debug entity: fake player model" []
+
+//
+// added by Rel71: bobbing movers and rain, kept at the end of the file
+//
+
+//---- MOD Rev2 29/octubre/2026
+// bobbing movers from Overfuncbobing.qc and Overfuncbob_fade.qc
+// noise, noise1 and sounds are not listed: train_sounds() is disabled and noise is never precached
+
+@baseclass base(Angle, Appearflags, Targetname) = Bob
+[
+	wait(string) : "Period (seconds)" : "4"
+	distance(integer) : "Travel distance" : 64
+	delay(string) : "Starting phase (0-1)" : "0" : "0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag."
+	pos1(string) : "pos1 origin (X Y Z)"
+	pos2(string) : "pos2 origin (X Y Z)"
+	dmg(integer) : "Damage when blocked" : 2
+	mdl(string) : "Alias model to display (always non-solid)"
+]
+
+@SolidClass base(Bob) = func_bobbing : "Bobbing mover
+
+Moves on a cosine wave between pos1 and pos2 and back, once every wait seconds. By default pos1 is the position where it was built and pos2 is pos1 minus distance along angle. If pos1 or pos2 is set, angle and distance are ignored and both are used as given. They are values for the entity origin: offsets from the built position for a brush without an origin brush, world positions otherwise. The phase comes from absolute time, so movers with the same wait stay in sync. Setting mdl replaces the brush with that alias model.
+Triggering it toggles it on and off. With a stop flag it keeps moving until it reaches that position; with several, it stops at the first one reached."
+[
+	spawnflags(flags) =
+	[
+		1 : "Start off" : 0
+		2 : "Crusher (no reverse)" : 0
+		4 : "Non-solid" : 0
+		8 : "Stop at pos2 when turned off" : 0
+		16 : "Stop at midpoint when turned off" : 0
+		32 : "Stop at pos1 when turned off" : 0
+		64 : "Random phase" : 0 : "Overrides delay."
+		128 : "Start invisible" : 0 : "Spawns on the first trigger. Later triggers toggle it."
+	]
+	alpha(string) : "Alpha (empty or 0 = opaque)"
+]
+
+@SolidClass base(Bob) = func_bobbing_fade : "Bobbing mover with distance fade
+
+Same movement and trigger behavior as func_bobbing. Its alpha is interpolated between alpha_near and alpha_far by the distance from the nearest living player to the entity's bounding box, so it is 0 anywhere inside it. Non-solid by default. Meant for fog volumes.
+While it is outside the player's PVS it stops moving, and it resumes at the same phase when visible again.
+Alpha 0 renders opaque in the network protocol, so the computed alpha never goes below 0.001 (invisible). An alpha_near of 0 becomes 0.001 and an alpha_far of 0 becomes 1."
+[
+	spawnflags(flags) =
+	[
+		1 : "Start off" : 0
+		2 : "Crusher (no reverse)" : 0
+		4 : "Solid" : 0 : "Brush only. An alias model set in mdl is always non-solid."
+		8 : "Stop at pos2 when turned off" : 0
+		16 : "Stop at midpoint when turned off" : 0
+		32 : "Stop at pos1 when turned off" : 0
+		64 : "Random phase" : 0 : "Overrides delay."
+		128 : "Start invisible" : 0 : "Spawns on the first trigger. Later triggers toggle it."
+	]
+	alpha_near(string) : "Alpha at dist_near or closer" : "0.001"
+	alpha_far(string) : "Alpha at dist_far or farther" : "1"
+	dist_near(integer) : "Distance where the fade ends" : 96
+	dist_far(integer) : "Distance where alpha_far is reached (default dist_near + 256)"
+	flicker_amp(string) : "Flicker amount (0 = off, 0.15 = +/-15%)" : "0"
+	flicker_rate(string) : "Flicker cycles per second" : "0.4" : "The think runs at 10 Hz at most, so values above 1 look stroboscopic."
+]
+
+@PointClass base(Bob) size(-8 -8 -8, 8 8 8) color(0 128 204) model({ "path": mdl }) = misc_bobbing : "Bobbing alias model
+
+Point version of func_bobbing for the model set in mdl, which is required. Same movement, keys and trigger behavior. Always non-solid."
+[
+	spawnflags(flags) =
+	[
+		1 : "Start off" : 0
+		8 : "Stop at pos2 when turned off" : 0
+		16 : "Stop at midpoint when turned off" : 0
+		32 : "Stop at pos1 when turned off" : 0
+		64 : "Random phase" : 0 : "Overrides delay."
+		128 : "Start invisible" : 0 : "Spawns on the first trigger. Later triggers toggle it."
+	]
+	alpha(string) : "Alpha (empty or 0 = opaque)"
+]
+
+//---- MOD 15/NOV/2026
+// client rain from Over_rain_client.qc (server) and CSQC/Over_hud_rain.qc (csprogs)
+//---- MOD 17/NOV/2026
+// entity rain from Over_ambient_fx.qc, ported from OverHorde. The Client flag picks the mode
+
+@SolidClass base(Appearflags, Targetname) = func_rainzone : "Rain zone
+
+Two modes, picked by the Client flag. Invisible and non-solid in game, texture it with trigger or skip.
+Client: rain drawn from the client, with no entity per drop. It rains while the player is inside the brush's XY footprint and below its top. Roofs and walls block it, the server checks the sky around each player. The top of the brush counts as sky, so it can sit just under the sky ceiling or cross it.
+Entities (flag off): every drop is an entity that falls from a random point of the brush's top face, splashes when it touches something and can do acid damage. It only rains while a player is closer than speed. Keep the top below the sky ceiling, drops born inside a brush vanish.
+An info_rain can change its keys at run time."
+[
+	spawnflags(flags) =
+	[
+		1 : "Client" : 0 : "Rain drawn by the client. Off spawns entity drops."
+	]
+	count(integer) : "Client density x25 drops (1-15, default 6), or entity drops per pass (default 4)"
+	height(integer) : "Fall speed (client default 800, entities default 500)"
+	alpha(string) : "Drop alpha (client default 0.32, entities default 0.6)"
+	splashcolor(choices) : "Drop color" : 1 =
+	[
+		1 : "Blue"
+		2 : "Green"
+		3 : "Purple"
+	]
+	wind_rain(choices) : "Wind" : 0 =
+	[
+		0 : "Vertical"
+		1 : "Slanted by wind"
+	]
+	rain_damage(integer) : "Acid damage, 0 = none (client per second with sky overhead, entities per drop that hits)" : 0
+	ode_rate(string) : "Entities only, seconds between passes" : "0.05"
+	wait(string) : "Entities only, drop timeout in seconds if it touches nothing" : "3"
+	speed(integer) : "Entities only, activation radius around each player" : 1200
+	ode_check(string) : "Entities only, seconds between player checks" : "1"
+]
+
+@PointClass base(Appearflags, Target, Targetname) size(-8 -8 -8, 8 8 8) color(255 128 0) = info_rain : "Rain control
+
+When triggered, copies the keys that are set to every func_rainzone named in target.
+Wind and acid are always set from its flags."
+[
+	spawnflags(flags) =
+	[
+		1 : "Set wind" : 0 : "Off sets vertical rain."
+		2 : "Set acid" : 0 : "Off sets no damage."
+	]
+	count(integer) : "Client density x25 drops (1-15), or entity drops per pass"
+	height(integer) : "Fall speed"
+	splashcolor(choices) : "Drop color" : 0 =
+	[
+		0 : "Keep"
+		1 : "Blue"
+		2 : "Green"
+		3 : "Purple"
+	]
+	rain_damage(integer) : "Acid damage with Set acid (client per second, entities per drop)"
+	ode_rate(string) : "Entities only, seconds between passes"
+	wait(string) : "Entities only, drop timeout in seconds"
+	speed(integer) : "Entities only, activation radius around each player"
+	ode_check(string) : "Entities only, seconds between player checks"
+]

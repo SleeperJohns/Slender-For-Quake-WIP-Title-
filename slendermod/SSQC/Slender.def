@@ -1722,115 +1722,6 @@ NOT_ON_HARD (1024) : Not on Hard
 NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
 */
 
-/*QUAKED func_bobbing (0 0.5 0.8) ? START_OFF CRUSHER_NO_REVERSE NON_SOLID STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
-Bobbing por from alkaline/dp300 by Rel71  29/oct/2026
-
-Moves on a cosine wave between pos1 and pos2 and back, once every wait seconds. By default pos1 is the position where it was built and pos2 is pos1 minus distance along angle. If pos1 or pos2 is set, angle and distance are ignored and both are used as given. They are values for the entity origin: offsets from the built position for a brush without an origin brush, world positions otherwise. The phase comes from absolute time, so movers with the same wait stay in sync. Setting mdl replaces the brush with that alias model.
-Triggering it toggles it on and off. With a stop flag it keeps moving until it reaches that position; with several, it stops at the first one reached.
-
--------- KEYS --------
-"angle" Direction.
-"targetname" Name.
-"wait" Period (seconds). Default: 4.
-"distance" Travel distance. Default: 64.
-"delay" Starting phase (0-1). Default: 0.
-0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
-"pos1" pos1 origin (X Y Z).
-"pos2" pos2 origin (X Y Z).
-"dmg" Damage when blocked. Default: 2.
-"mdl" Alias model to display (always non-solid).
-"alpha" Alpha (empty or 0 = opaque).
-
--------- SPAWNFLAGS --------
-START_OFF (1) : Start off
-CRUSHER_NO_REVERSE (2) : Crusher (no reverse)
-NON_SOLID (4) : Non-solid
-STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
-STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
-STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
-RANDOM_PHASE (64) : Random phase. Overrides delay.
-START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
-NOT_ON_EASY (256) : Not on Easy
-NOT_ON_NORMAL (512) : Not on Normal
-NOT_ON_HARD (1024) : Not on Hard
-NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
-*/
-
-/*QUAKED func_bobbing_fade (0 0.5 0.8) ? START_OFF CRUSHER_NO_REVERSE SOLID STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
-Bobbing mover with distance fade made by Rel71 29/oct/2026
-
-Same movement and trigger behavior as func_bobbing. Its alpha is interpolated between alpha_near and alpha_far by the distance from the nearest living player to the entity's bounding box, so it is 0 anywhere inside it. Non-solid by default. Meant for fog volumes.
-While it is outside the player's PVS it stops moving, and it resumes at the same phase when visible again.
-Alpha 0 renders opaque in the network protocol, so the computed alpha never goes below 0.001 (invisible). An alpha_near of 0 becomes 0.001 and an alpha_far of 0 becomes 1.
-
--------- KEYS --------
-"angle" Direction.
-"targetname" Name.
-"wait" Period (seconds). Default: 4.
-"distance" Travel distance. Default: 64.
-"delay" Starting phase (0-1). Default: 0.
-0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
-"pos1" pos1 origin (X Y Z).
-"pos2" pos2 origin (X Y Z).
-"dmg" Damage when blocked. Default: 2.
-"mdl" Alias model to display (always non-solid).
-"alpha_near" Alpha at dist_near or closer. Default: 0.001.
-"alpha_far" Alpha at dist_far or farther. Default: 1.
-"dist_near" Distance where the fade ends. Default: 96.
-"dist_far" Distance where alpha_far is reached (default dist_near + 256).
-"flicker_amp" Flicker amount (0 = off, 0.15 = +/-15%). Default: 0.
-"flicker_rate" Flicker cycles per second. Default: 0.4.
-The think runs at 10 Hz at most, so values above 1 look stroboscopic.
-
--------- SPAWNFLAGS --------
-START_OFF (1) : Start off
-CRUSHER_NO_REVERSE (2) : Crusher (no reverse)
-SOLID (4) : Solid. Brush only. An alias model set in mdl is always non-solid.
-STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
-STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
-STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
-RANDOM_PHASE (64) : Random phase. Overrides delay.
-START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
-NOT_ON_EASY (256) : Not on Easy
-NOT_ON_NORMAL (512) : Not on Normal
-NOT_ON_HARD (1024) : Not on Hard
-NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
-*/
-
-/*QUAKED misc_bobbing (0 0.5 0.8) (-8 -8 -8) (8 8 8) START_OFF - - STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
-{
-model({ "path": mdl });
-}
-Bobbing alias model
-function restored by Rel71 29/oct/2026
-Point version of func_bobbing for the model set in mdl, which is required. Same movement, keys and trigger behavior. Always non-solid.
-
--------- KEYS --------
-"angle" Direction.
-"targetname" Name.
-"wait" Period (seconds). Default: 4.
-"distance" Travel distance. Default: 64.
-"delay" Starting phase (0-1). Default: 0.
-0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
-"pos1" pos1 origin (X Y Z).
-"pos2" pos2 origin (X Y Z).
-"dmg" Damage when blocked. Default: 2.
-"mdl" Alias model to display (always non-solid).
-"alpha" Alpha (empty or 0 = opaque).
-
--------- SPAWNFLAGS --------
-START_OFF (1) : Start off
-STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
-STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
-STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
-RANDOM_PHASE (64) : Random phase. Overrides delay.
-START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
-NOT_ON_EASY (256) : Not on Easy
-NOT_ON_NORMAL (512) : Not on Normal
-NOT_ON_HARD (1024) : Not on Hard
-NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
-*/
-
 /*QUAKED trigger_changelevel (0 0.5 0.8) ? NO_INTERMISSION - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
 Trigger: Change level
 
@@ -2075,5 +1966,190 @@ Debug entity: continuously plays enforcer sounds
 
 /*QUAKED viewthing (0 0.5 0.8) (-8 -8 -8) (8 8 8)
 Debug entity: fake player model
+*/
+
+/*QUAKED func_bobbing (0 0.5 0.8) ? START_OFF CRUSHER_NO_REVERSE NON_SOLID STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Bobbing por from alkaline/dp300 by Rel71  29/oct/2026
+
+Moves on a cosine wave between pos1 and pos2 and back, once every wait seconds. By default pos1 is the position where it was built and pos2 is pos1 minus distance along angle. If pos1 or pos2 is set, angle and distance are ignored and both are used as given. They are values for the entity origin: offsets from the built position for a brush without an origin brush, world positions otherwise. The phase comes from absolute time, so movers with the same wait stay in sync. Setting mdl replaces the brush with that alias model.
+Triggering it toggles it on and off. With a stop flag it keeps moving until it reaches that position; with several, it stops at the first one reached.
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"wait" Period (seconds). Default: 4.
+"distance" Travel distance. Default: 64.
+"delay" Starting phase (0-1). Default: 0.
+0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
+"pos1" pos1 origin (X Y Z).
+"pos2" pos2 origin (X Y Z).
+"dmg" Damage when blocked. Default: 2.
+"mdl" Alias model to display (always non-solid).
+"alpha" Alpha (empty or 0 = opaque).
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+CRUSHER_NO_REVERSE (2) : Crusher (no reverse)
+NON_SOLID (4) : Non-solid
+STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
+STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
+STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
+RANDOM_PHASE (64) : Random phase. Overrides delay.
+START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_bobbing_fade (0 0.5 0.8) ? START_OFF CRUSHER_NO_REVERSE SOLID STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Bobbing mover with distance fade made by Rel71 29/oct/2026
+
+Same movement and trigger behavior as func_bobbing. Its alpha is interpolated between alpha_near and alpha_far by the distance from the nearest living player to the entity's bounding box, so it is 0 anywhere inside it. Non-solid by default. Meant for fog volumes.
+While it is outside the player's PVS it stops moving, and it resumes at the same phase when visible again.
+Alpha 0 renders opaque in the network protocol, so the computed alpha never goes below 0.001 (invisible). An alpha_near of 0 becomes 0.001 and an alpha_far of 0 becomes 1.
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"wait" Period (seconds). Default: 4.
+"distance" Travel distance. Default: 64.
+"delay" Starting phase (0-1). Default: 0.
+0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
+"pos1" pos1 origin (X Y Z).
+"pos2" pos2 origin (X Y Z).
+"dmg" Damage when blocked. Default: 2.
+"mdl" Alias model to display (always non-solid).
+"alpha_near" Alpha at dist_near or closer. Default: 0.001.
+"alpha_far" Alpha at dist_far or farther. Default: 1.
+"dist_near" Distance where the fade ends. Default: 96.
+"dist_far" Distance where alpha_far is reached (default dist_near + 256).
+"flicker_amp" Flicker amount (0 = off, 0.15 = +/-15%). Default: 0.
+"flicker_rate" Flicker cycles per second. Default: 0.4.
+The think runs at 10 Hz at most, so values above 1 look stroboscopic.
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+CRUSHER_NO_REVERSE (2) : Crusher (no reverse)
+SOLID (4) : Solid. Brush only. An alias model set in mdl is always non-solid.
+STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
+STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
+STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
+RANDOM_PHASE (64) : Random phase. Overrides delay.
+START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED misc_bobbing (0 0.5 0.8) (-8 -8 -8) (8 8 8) START_OFF - - STOP_AT_POS2_WHEN_TURNED_OFF STOP_AT_MIDPOINT_WHEN_TURNED_OFF STOP_AT_POS1_WHEN_TURNED_OFF RANDOM_PHASE START_INVISIBLE NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+{
+model({ "path": mdl });
+}
+Bobbing alias model
+function restored by Rel71 29/oct/2026
+Point version of func_bobbing for the model set in mdl, which is required. Same movement, keys and trigger behavior. Always non-solid.
+
+-------- KEYS --------
+"angle" Direction.
+"targetname" Name.
+"wait" Period (seconds). Default: 4.
+"distance" Travel distance. Default: 64.
+"delay" Starting phase (0-1). Default: 0.
+0 starts at pos1, 0.5 at pos2. Ignored with the random phase flag.
+"pos1" pos1 origin (X Y Z).
+"pos2" pos2 origin (X Y Z).
+"dmg" Damage when blocked. Default: 2.
+"mdl" Alias model to display (always non-solid).
+"alpha" Alpha (empty or 0 = opaque).
+
+-------- SPAWNFLAGS --------
+START_OFF (1) : Start off
+STOP_AT_POS2_WHEN_TURNED_OFF (8) : Stop at pos2 when turned off
+STOP_AT_MIDPOINT_WHEN_TURNED_OFF (16) : Stop at midpoint when turned off
+STOP_AT_POS1_WHEN_TURNED_OFF (32) : Stop at pos1 when turned off
+RANDOM_PHASE (64) : Random phase. Overrides delay.
+START_INVISIBLE (128) : Start invisible. Spawns on the first trigger. Later triggers toggle it.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED func_rainzone (0 0.5 0.8) ? CLIENT - - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Rain zone
+made by Rel71 17/NOV/2026
+
+TWO MODES, picked by the FLAG,
+ Invisible and non-solid in game, texture it with trigger or skip
+Client: rain drawn from the client, with no entity per drop.
+It rains while the player is inside the bruss XY footprint and below its top
+ Roofs and walls block it, the server checks the sky around each player
+The top of the brush counts as sky, so it can sit just under the sky ceiling or cross it
+
+
+Entities (flag off): every drop is an entity that falls from a random point of the brushs top face, splashes when it touches something and can do acid damage.
+ It only rains while a player is closer than SPEED KEY. 
+ Keep the top below the sky ceiling, drops born inside a brush vanish
+An info_rain can change its keys at run time.
+
+-------- KEYS --------
+"targetname" Name.
+"count" Client density x25 drops (1-15, default 6), or entity drops per pass (default 4).
+"height" Fall speed (client default 800, entities default 500).
+"alpha" Drop alpha (client default 0.32, entities default 0.6).
+"splashcolor" Drop color. Default: 1 (Blue).
+  1 = Blue
+  2 = Green
+  3 = Purple
+"wind_rain" Wind. Default: 0 (Vertical).
+  0 = Vertical
+  1 = Slanted by wind
+"rain_damage" Acid damage, 0 = none (client per second with sky overhead, entities per drop that hits). Default: 0.
+"ode_rate" Entities only, seconds between passes. Default: 0.05.
+"wait" Entities only, drop timeout in seconds if it touches nothing. Default: 3.
+"speed" Entities only, activation radius around each player. Default: 1200.
+"ode_check" Entities only, seconds between player checks. Default: 1.
+
+-------- SPAWNFLAGS --------
+CLIENT (1) : Client. Rain drawn by the client. Off spawns entity drops.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
+*/
+
+/*QUAKED info_rain (1 0.5 0) (-8 -8 -8) (8 8 8) SET_WIND SET_ACID - - - - - - NOT_ON_EASY NOT_ON_NORMAL NOT_ON_HARD NOT_IN_DEATHMATCH
+Rain control
+made by Rel71 17/NOV/2026
+
+When triggered, copies the keys that are set to every func_rainzone named in target.
+Wind and acid are always set from its flugs
+
+-------- KEYS --------
+"target" Target.
+"killtarget" Killtarget.
+"targetname" Name.
+"count" Client density x25 drops (1-15), or entity drops per pass.
+"height" Fall speed.
+"splashcolor" Drop color. Default: 0 (Keep).
+  0 = Keep
+  1 = Blue
+  2 = Green
+  3 = Purple
+"rain_damage" Acid damage with Set acid (client per second, entities per drop).
+"ode_rate" Entities only, seconds between passes.
+"wait" Entities only, drop timeout in seconds.
+"speed" Entities only, activation radius around each player.
+"ode_check" Entities only, seconds between player checks.
+
+-------- SPAWNFLAGS --------
+SET_WIND (1) : Set wind. Off sets vertical rain.
+SET_ACID (2) : Set acid. Off sets no damage.
+NOT_ON_EASY (256) : Not on Easy
+NOT_ON_NORMAL (512) : Not on Normal
+NOT_ON_HARD (1024) : Not on Hard
+NOT_IN_DEATHMATCH (2048) : Not in Deathmatch
 */
 
